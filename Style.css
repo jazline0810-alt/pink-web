@@ -1,0 +1,520 @@
+ /* ==========================================
+   GLOBAL STRIBUTES & RESET
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para pati padding at border ay kasama sa sukat ng element */
+}
+
+/* ==========================================
+   BODY STYLING (Background at Font)
+   ========================================== */
+body {
+    background-color: #120c14; /* Madilim na kulay ng background ng buong page */
+    color: #ffffff; /* Kulay puti para sa mga text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Uri ng font na gagamitin */
+    min-height: 100vh; /* Sakop ang buong taas ng screen */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* I-center ang nilalaman pahalang */
+    padding: 20px; /* Space sa paligid ng screen */
+}
+
+/* ==========================================
+   CONTAINER (Yung parang card sa gitna)
+   ========================================== */
+.container {
+    width: 100%;
+    max-width: 900px; /* Hanggang dito lang ang luwang ng container */
+    background: linear-gradient(135deg, #1f1224 0%, #2a152d 50%, #150b18 100%); /* Gradient na kulay */
+    border: 1px solid #3d2247; /* Manipis na border sa gilid */
+    border-radius: 12px; /* Pabilog na sulok ng container */
+    padding: 30px 40px; /* Espasyo sa loob ng container */
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.15); /* Anino sa paligid na may bahid ng pink */
+    margin-top: 40px; /* Distansya mula sa itaas ng screen */
+}
+
+/* ==========================================
+   HEADER SECTION (Logo at mga Button)
+   ========================================== */
+header {
+    display: flex;
+    justify-content: space-between; /* Magkahiwalay ang logo sa kaliwa at mga button sa kanan */
+    align-items: center; /* I-center nang pantay pahalang */
+    margin-bottom: 60px; /* Distansya patungo sa hero section sa ibaba */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Distansya sa pagitan ng icon at text ng logo */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5b99; /* Kulay pink para sa logo */
+    text-decoration: none;
+}
+
+.logo span {
+    font-size: 1.6rem; /* Laki ng icon sa gilid ng logo */
+}
+
+/* Lalagyan ng dalawang button sa header (Log-in at Sign-Up) */
+.nav-buttons {
+    display: flex;
+    align-items: center; 
+    gap: 12px; /* Distansya sa pagitan ng Log-in at Sign-Up button */
+    margin: 0; 
+}
+
+/* Estilo para sa Log-in button */
+.login-btn {
+    background-color: transparent;
+    color: #ff5b99;
+    border: 1px solid #ff5b99;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 105, 180, 0.1);
+}
+
+/* Estilo para sa Sign-Up button */
+.signup-btn {
+    background-color: #ff5b99; /* Kulay pink ng button */
+    color: #ffffff; /* Kulay ng text sa loob ng button */
+    padding: 10px 20px; /* Sukat ng loob ng button */
+    border-radius: 6px; /* Pabilog na sulok ng button */
+    text-decoration:none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.3s; /* Smooth na pagpalit ng kulay kapag tinapatan ng mouse */
+}
+
+.signup-btn:hover {
+    background-color: #ff85c0; /* Mas matingkad na pink kapag tinapatan ng mouse */
+}
+
+/* ==========================================
+   HERO SECTION (Welcome text at Description)
+   ========================================== */
+.hero {
+    text-align: center; /* I-center ang lahat ng text dito */
+    padding: 20px 0;
+}
+
+.hero h1 {
+    font-size: 2.8rem; /* Laki ng pangunahing pamagat */
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.hero h1 span {
+    color: #ff5b99; /* Ginagawang kulay pink ang salitang "GRINDMIND!" */
+}
+
+.subtitle {
+    font-size: 1.25rem; /* Laki ng sub-heading (Learn. Practice. Improve.) */
+    font-weight: 500;
+    color: #f3e8f6;
+    margin-bottom: 25px;
+}
+
+.description {
+    font-size: 0.95rem; /* Laki ng mahabang paliwanag sa ibaba */
+    color: #d1b8dc; /* Medyo mapusyaw na kulay para sa talata */
+    max-width: 650px; /* Limitadong luwang para madaling basahin */
+    margin: 0 auto 40px auto; /* I-center ito at lagyan ng espasyo sa ibaba */
+    line-height: 1.6; /* Distansya sa pagitan ng mga linya ng text */
+}
+
+/* ==========================================
+   START LEARNING BUTTON
+   ========================================== */
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Distansya sa pagitan ng text at arrow icon */
+    background-color: #ff5b99; /* Kulay pink ng button */
+    color: #120c14; /* Kulay ng text */
+    padding: 12px 28px; /* Sukat ng button */
+    border-radius: 6px; /* Pabilog na sulok */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.3s, transform 0.2s; /* Smooth na animation kapag ginalaw */
+}
+
+.explore-btn:hover {
+    background-color: #ff85c0; /* Kulay pink kapag tinapatan ng mouse */
+    transform: translateY(-2px); /* Bahagyang aangat ang button kapag tinapatan ng mouse */
+}
+
+/* Estilo para sa Welcome Hub Text */
+.center-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.welcome-hub h2 {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* Kulay puti para sa unang bahagi */
+.white-text {
+    color: #ffffff;
+}
+
+/* Kulay pink para sa Learning Hub! */
+.pink-text {
+    color: #ff5b99;
+}
+
+.welcome-hub p {
+    color: #d1b8dc;
+    font-size: 1rem;
+    margin: 0;
+}
+
+
+/* Grid layout para sa tatlong course boxes */
+.course-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Pangkalahatang disenyo ng bawat course table/box */
+.course-table {
+    padding: 30px;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.course-table:hover {
+    transform: translateY(-2px);
+}
+
+.course-table p {
+    color: #e5e7eb;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.course-details {
+    font-size: 0.85rem;
+    color: #d1b8dc;
+    margin-bottom: 15px;
+}
+
+/* Pangkalahatang button style */
+.course-action-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+.course-action-btn:hover {
+    opacity: 0.85;
+}
+
+/* ==========================================
+   1. MICROSOFT WORD (Blue Theme)
+   ========================================== */
+.word-table {
+    background: rgba(30, 58, 138, 0.25); /* Banayad na asul na background */
+    border: 2px solid #3b82f6;            /* Border na kulay blue */
+}
+
+.word-table h3 {
+    color: #60a5fa;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.word-action-btn {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* ==========================================
+   2. MICROSOFT EXCEL (Green Theme)
+   ========================================== */
+.excel-table {
+    background: rgba(6, 95, 70, 0.25);  /* Banayad na berdeng background */
+    border: 2px solid #10b981;           /* Border na kulay green */
+}
+
+.excel-table h3 {
+    color: #34d399;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.excel-action-btn {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+/* ==========================================
+   3. MICROSOFT POWERPOINT (Orange/Red Theme)
+   ========================================== */
+.ppt-table {
+    background: rgba(154, 52, 18, 0.25); /* Banayad na orange background */
+    border: 2px solid #f97316;           /* Border na kulay orange/red */
+}
+
+.ppt-table h3 {
+    color: #fb923c;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.ppt-action-btn {
+    background-color: #f97316;
+    color: #ffffff;
+}
+ .back-to-home{
+    color: #ff5b99;
+    text-decoration:none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.3s;
+ }
+ .back-to-home:hover {
+    text-decoration: underline;
+}
+/* Istilo para sa Header at Account Section */
+.hub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header-right-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.account-link {
+    color: #ff5b99;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.account-link:hover {
+    text-decoration: underline;
+}
+/* Para luminya nang maayos ang header sa labas ng box */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilo para sa Navigation Links sa gitna ng header */
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: #ff5b99; /* Kulay pink na katulad ng tema mo */
+    font-weight: bold;
+}
+
+/* Pinaliit at pinagandang container sa gitna (mula 900px ginawang 750px para mas compact) */
+.container {
+    width: 100%;
+    max-width: 750px; 
+    margin: 20px auto;
+    padding: 30px 30px;
+    border-radius: 12px;
+}/* Estilo para sa Contact Form */
+.contact-form {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    color: #ff5b99;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #120c14;
+    border: 1px solid #3d2247;
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ff5b99; /* Mag-g-glow sa pink kapag ginagamit */
+}
+/* Hub Header Stylings (Nasa labas ng container) */
+.hub-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header-right-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+/* Estilo para sa nakalutang na welcome section sa labas ng box */
+.hub-welcome-section {
+    max-width: 850px;
+    margin: 20px auto 10px auto;
+    padding: 0 20px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.hub-welcome-section h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.hub-welcome-section p {
+    color: #d1b8dc;
+    font-size: 0.9rem;
+}
+/* Estilo para sa nakalutang na welcome section sa labas ng box */
+.hub-welcome-section {
+    max-width: 850px;
+    margin: 20px auto 10px auto;
+    padding: 0 20px;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.hub-welcome-section h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.hub-welcome-section p {
+    color: #d1b8dc;
+    font-size: 0.9rem;
+}
+/* Dagdag space paba para sa Welcome Section at Course Cards */
+.hub-welcome-section {
+    margin-top: 40px !important; /* Inibaba mula sa header */
+    margin-bottom: 25px;         /* May tamang agwat papunta sa course box */
+}
+
+/* Kung gusto mo ring lagyan ng bahagyang space ang container sa ibaba */
+.container {
+    margin-top: 15px;
+}
+.hub-welcome-section {
+    margin-top: 40px;
+    margin-bottom: 25px;
+    text-align: left; /* Panatilihing kaliwa ang heading kung iyon ang gusto mo */
+}
+
+/* Subtitle lang ang sesentro */
+.hub-welcome-section p {
+    text-align: center;
+}
+.logo img {
+    width: 150px;
+    height: 90px;
+    object-fit: contain;
+    display: block;
+}
+/* Container para sa Logo at Pangalan */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+/* Tamang sukat ng malaking logo */
+.brand-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Suwabeng laki ng teksto na hindi sisira sa header */
+.brand-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.brand-text span {
+    color: #ff5b99;
+}
+/* Pag-aayos sa header ng courses.html para maging pantay-pantay */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+/* Para magkatabi ang My Account at Back to Home sa kanan */
+.nav-links, .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

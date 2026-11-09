@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course 2: Microsoft Excel - GrindMind</title>
+    <link rel="stylesheet" href="excel.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header: Logo sa Kaliwa, Back to courses sa Kanan -->
+        <header class="hub-header">
+            <a href="courses.html" class="logo">
+                <span>🎓</span> GRINDMIND
+            </a>
+            <a href="courses.html" class="back-to-courses">
+                &lt; Back to courses
+            </a>
+        </header>
+
+        <!-- Course Header & Progress Bar -->
+        <div class="course-header-section">
+            <h2>COURSE 2: MICROSOFT EXCEL</h2>
+            <p>Master spreadsheets, formulas, functions, data organization, and shortcuts.</p>
+            
+            <div class="progress-container">
+                <span>Progress Bar: 0 / 3 Modules Completed (0%)</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Modules -->
+        <div class="modules-section">
+            <h3 class="modules-title">COURSE MODULES</h3>
+
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-info">
+                    <h4>MODULE 1: Excel Interface & Basic Data Entry.</h4>
+                    <p>• Lesson 1.1: Navigating Cells, Rows, Columns, & Worksheets</p>
+                    <p>• Lesson 1.2: Data Types, Formatting Cells, & Table Styles</p>
+                    <p>• Quiz 1: Module 1 Knowledge Check</p>
+                </div>
+                <a href="excel-lesson1.html" class="action-btn start-btn">START</a>
+            </div>
+
+            <!-- Module 2 -->
+            <div id= "excel-mod2-card" class="module-card locked">
+                <div class="module-info">
+                    <h4>MODULE 2: Essential Formulas & Functions</h4>
+                    <p>• Lesson 2.1: Basic Math Operations & Cell References (A1, $A$1)</p>
+                    <p>• Lesson 2.2: Working with SUM, AVERAGE, COUNT, & MAX/MIN</p>
+                    <p>• Hands-On Challenge: Building a Monthly Expense Tracker</p>
+                </div>
+            
+                <span class="status-label">LOCKED 🔒</span>
+            </div>
+
+            <!-- Module 3 -->
+            <div id= "excel-mod3-card" class="module-card locked">
+                <div class="module-info">
+                    <h4>MODULE 3: Data Analysis & Visual Charts.</h4>
+                    <p>• Lesson 3.1: Sorting, Filtering, & Conditional Formatting</p>
+                    <p>• Lesson 3.2: Creating Bar, Line, & Pie Charts for Data Visualization</p>
+                    <p>• Final Assessment: Sales Data Analysis & Report</p>
+                </div>
+        
+                <span class="status-label">LOCKED 🔒</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Kinuha natin ang user at tinanggalan ng ekstra space (.trim())
+    const currentUser = (localStorage.getItem("user") || "guest").trim();
+    
+    // Binabasa ang progress object
+    const excelProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
+
+    // UNLOCK MODULE 2
+    if (excelProgress.mod1 === true) {
+        const mod2Card = document.getElementById("excel-mod2-card");
+        if (mod2Card) {
+            mod2Card.classList.remove("locked");
+            const statusLabel = mod2Card.querySelector(".status-label");
+            if (statusLabel) {
+                statusLabel.outerHTML =statusLabel.outerHTML = `<a href="excel-m2-L2.1.html" class="action-btn start-btn">START</a>`;
+        }
+    }
+}
+
+    // UNLOCK MODULE 3
+    if (excelProgress.mod2 === true) {
+        const mod3Card = document.getElementById("excel-mod3-card");
+        if (mod3Card) {
+            mod3Card.classList.remove("locked");
+            const statusLabel = mod3Card.querySelector(".status-label");
+            if (statusLabel) {
+                statusLabel.outerHTML = statusLabel.outerHTML = `<a href="excel-m3-L3.1.html" class="action-btn start-btn">START</a>`;
+            }
+        }
+    }
+});
+</script>
+
+</html>

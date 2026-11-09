@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint Lesson 1.2 | GrindMind</title>
+    <link rel="stylesheet" href="ppt-module.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <a href="powerpoint-course.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back to Course Overview</a>
+        <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i><span>GRINDMINDs</span></div>
+        <div class="user-profile"><span>Welcome, <strong id="userName">Learner</strong>!</span></div>
+    </header>
+
+    <main class="page-container">
+        <section class="course-header-section">
+            <span class="course-category" style="color: #ff8800;">COURSE 3: MICROSOFT POWERPOINT</span>
+            <h1 class="module-title">Module 3: Transitions, Animation & Presenting</h1>
+        </section>
+
+        <!-- Lessons List Navigation -->
+        <section class="lessons-list">
+            <div class="lesson-card" onclick="window.location.href='powerpoint-lesson1.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#ff8800;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 3.1 </span>
+                    <h3 class="lesson-title-text">Applying Smooth Transitions & Subtle Animations</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card active">
+                <div class="card-left-border" style="display:block; background: #ff8800;"></div>
+                <div class="lesson-check-icon" style="color:#ff8800;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 3.2 (Current)</span>
+                    <h3 class="lesson-title-text">Advanced Slide Show Timings & Presenter Tools </h3>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='ppt-quiz.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag tag-quiz"> Final Assessment</span>
+                    <h3 class="lesson-title-text">Interactive Presentation Project</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="active-lesson-area">
+            <div class="active-badge" style="color: #ff8800; border-color: #ff8800; background: rgba(255, 136, 0, 0.1);">LESSON 3.2</div>
+            <h2 class="active-heading">Advanced Slide Show Timings & Presenter Tools </h2>
+
+            <div class="video-card-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PowerPoint Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <i class="fa-solid fa-book-open" style="color: #ff8800;"></i>
+                    <h2>Lesson Overview & Key Takeaways</h2>
+                </div>
+                <div class="overview-body">
+                    <p>In this lesson, you will learn how to master slide show execution using automated timings and presenter tools:</p>
+                    <ul>
+                        <li><strong>Slide Timings:</strong>Setting auto-advance durations for smooth transitions.</li>
+                        <li><strong>Presenter View: </strong>Accessing private speaker notes and presentation timers.</li>
+                        <li><strong>Live Tools:</strong> Utilizing laser pointers, pens, and zoom features while presenting.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" onclick="window.location.href='ppt-m3l1.html'">
+                    <i class="fa-solid fa-arrow-left"></i> Previous Lesson
+                </button>
+                <button class="nav-btn next-btn" onclick="window.location.href='ppt-m3f.html'" style="background: linear-gradient(135deg, #ff8800, #ffbb00); color: #0d1117; font-weight: 700;">
+                    Next <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) document.getElementById("userName").textContent = savedName;
+    </script>
+</body>
+</html>

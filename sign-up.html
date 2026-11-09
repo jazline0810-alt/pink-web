@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | GrindMind</title>
+    <link rel="stylesheet" href="sign-up.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+    <!-- Upper Right "Back to home page" Link -->
+    <a href="Index.html" class="top-home-link">Back to home </a> 
+
+    <div class="signup-wrapper">
+        <h2 class="title">Sign Up</h2>
+
+       <form id="signupForm">
+            <!-- Name Input -->
+            <div class="input-container">
+                <input type="text" id="name" placeholder="Name" required>
+            </div>
+
+            <!-- Email Input -->
+            <div class="input-container">
+                <input type="email" placeholder="Email" required>
+            </div>
+
+            <!-- Password Input -->
+<div class="input-container password-container">
+  <input type="password" id="password" placeholder="Password" required>
+  <i class="fa-solid fa-eye" id="togglePassword"></i>
+</div>
+
+            <!-- Pink Sign Up Button -->
+            <button type="submit" class="btn-signup">Sign Up</button>
+        </form>
+
+        <!-- Already have an account? Log in -->
+        <p class="login-redirect">
+            Already have an account? <a href="log-in.html">Log in</a>
+        </p>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course 1: Microsoft Word - GrindMind</title>
+    <link rel="stylesheet" href="word.css">
+</head>
+<body class="word-page">
+
+    <div class="container">
+        <!-- Header: Logo sa Kaliwa, Back to courses sa Kanan -->
+        <header class="hub-header">
+            <a href="courses.html" class="logo">
+                <span> GRINDMIND</span>
+            </a>
+            <a href="courses.html" class="back-to-courses">
+                &lt; Back to Courses
+            </a>
+        </header>
+
+       
+        <!-- Course Header & Progress Bar -->
+        <div class="course-header-section">
+            <h2>COURSE 1: MICROSOFT WORD</h2>
+            <p>Master Master document creation, formatting page layouts, and professional reports.</p>
+            
+            <div class="progress-container">
+                <span>Progress Bar: 0 / 3 Modules Completed (0%)</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Modules -->
+        <div class="modules-section">
+            <h3 class="modules-title">COURSE MODULES</h3>
+
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-info">
+                    <h4>MODULE 1: Documents Basics & Ribbon Navigation </h4>
+                    <p>• Lesson 1.1: Understanding the Word Interface & Ribbon</p>
+                    <p>• Lesson 1.2: Font Formatting, Paragraph Alignment & Spacing</p>
+                    <p>• Quiz 1: Module 1 Knowledge Check</p>
+                </div>
+                <a href="module-1.html" class="action-btn start-btn">START</a>
+            </div>
+
+            <!-- Module 2 -->
+            <div id= "word-mod2-card" class="module-card locked">
+                <div class="module-info">
+                    <h4>MODULE 2:Tables,Headers,& Page Layouts</h4>
+                    <p>• Lesson 2.1: Inserting & Formatting Tables </p>
+                    <p>• Lesson 2.2: Page Margins Orientation & Page Breaks </p>
+                    <p>• Hands-On Challenge: Formatting an Official Corporate Memorandum</p>
+                </div>
+            
+                <span class="status-label">LOCKED 🔒</span>
+            </div>
+
+            <!-- Module 3 -->
+            <div id= "word-mod3-card" class="module-card locked">
+                <div class="module-info">
+                    <h4>MODULE 3: Advance Style, TOC, & References </h4>
+                    <p>• Lesson 3.1: Applying Heading Styles & Automatic Table of Contents </p>
+                    <p>• Lesson 3.2: Adding Citations, Captions, & References</p>
+                    <p>• Final Assessment: Complete Report Creation</p>
+                </div>
+        
+                <span class="status-label">LOCKED 🔒</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Kinuha natin ang user at tinanggalan ng ekstra space (.trim())
+    const currentUser = (localStorage.getItem("user") || "guest").trim();
+    
+    // Binabasa ang progress object
+    const excelProgress = JSON.parse(localStorage.getItem(currentUser + "_word_progress")) || {};
+
+    // UNLOCK MODULE 2
+    if (excelProgress.mod1 === true) {
+        const mod2Card = document.getElementById("word-mod2-card");
+        if (mod2Card) {
+            mod2Card.classList.remove("locked");
+            const statusLabel = mod2Card.querySelector(".status-label");
+            if (statusLabel) {
+                statusLabel.outerHTML =statusLabel.outerHTML = `<a href="word-m2L2.1.html" class="action-btn start-btn">START</a>`;
+        }
+    }
+}
+
+    // UNLOCK MODULE 3
+    if (excelProgress.mod2 === true) {
+        const mod3Card = document.getElementById("word-mod3-card");
+        if (mod3Card) {
+            mod3Card.classList.remove("locked");
+            const statusLabel = mod3Card.querySelector(".status-label");
+            if (statusLabel) {
+                statusLabel.outerHTML = statusLabel.outerHTML = `<a href="word-m3-L3.1.html" class="action-btn start-btn">START</a>`;
+            }
+        }
+    }
+});
+</script>
+
+<script src="word.js"></script>
+</html>

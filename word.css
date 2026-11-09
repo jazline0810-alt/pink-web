@@ -1,0 +1,176 @@
+/* ==========================================
+   GLOBAL STYLES
+   ========================================== */
+body {
+    background-color: #0d0b1e;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px 30px; /* Nilagyan ng sapat na espasyo sa kaliwa at kanang gilid para hindi sagad */
+}
+
+/* ==========================================
+   HEADER STYLE
+   ========================================== */
+.hub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.logo {
+    color: #ff69b4;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-to-courses {
+    color: #ff69b4;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.3s;
+}
+
+.back-to-courses:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================
+   COURSE HEADER & PROGRESS
+   ========================================== */
+.course-header-section {
+    margin-bottom: 40px;
+}
+
+.course-header-section h2 {
+    color: #3b82f6;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.course-header-section p {
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.progress-container span {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.progress-bar-bg {
+    background-color: #1e1b4b;
+    border-radius: 10px;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: #3b82f6;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* ==========================================
+   MODULE CARDS STYLING
+   ========================================== */
+.modules-section h3 {
+    color: #ff69b4;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Active / Unlocked Module Card */
+.module-card, 
+.module-card.word-table {
+    background: rgba(30, 58, 138, 0.25);
+    background-color: #13102d;
+    border: 2px solid #3b82f6;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Locked Module Card */
+.module-card.locked, 
+.module-card-locked {
+    background-color: #13102d;
+    border: 2px solid #2a265f;
+    padding: 20px;
+    border-radius: 12px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.module-info {
+    flex: 1;
+    padding-right: 20px; /* Nagbibigay ng sapat na agwat para hindi sumagad ang text sa button/badge */
+}
+
+.module-info h4 {
+    color: #38bdf8;
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.module-info p {
+    color: #94a3b8;
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   BUTTONS & LABELS
+   ========================================== */
+.action-btn.start-btn {
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Locked Badge para magmukhang kahon at hindi sumagad sa gilid */
+.status-label, 
+.locked-badge {
+    background-color: #1e1b4b;
+    color: #64748b;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid #2a265f;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+}

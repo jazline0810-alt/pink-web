@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in | GrindMind</title>
+    <link rel="stylesheet" href="log-in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Upper Right Sign Up Link -->
+    <a href="sign-up.html" class="top-signup-link">SIGN UP</a>
+
+    <div class="login-wrapper">
+        <h2 class="title">Log in</h2>
+
+        <form action="#" method="POST">
+            <!-- Email / Username Input -->
+            <div class="input-container">
+                <input type="text" placeholder="Email or Username" required>
+            </div>
+
+            <!-- Password Input with Inline FORGOT? Link -->
+            <div class="input-container password-container">
+  <input type="password" id="loginPassword" placeholder="Password." required>
+  <i class="fa-solid fa-eye" id="toggleLoginPassword"></i>
+  <a href="#" class="forgot-link">FORGOT?</a>
+</div>
+
+            <!-- Log In Button -->
+            <button type="submit" class="btn-login-text">LOG IN</button>
+        </form>
+
+        <!-- OR Separator Line -->
+        <div class="separator">
+            <span>or</span>
+        </div>
+
+        <!-- Social Logins -->
+        <div class="social-logins">
+            <button class="btn-social btn-google">SIGN IN WITH GOOGLE</button>
+            <button class="btn-social btn-facebook">SIGN IN WITH FACEBOOK</button>
+        </div>
+
+        <!-- DAGDAG DITO: Terms and Privacy Policy Note -->
+        <p class="terms-text">
+            By Signing into grindMind, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+        </p>
+    </div> <!-- WAKAS NG login-wrapper -->
+    </div>
+<script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const inputUser = document.querySelector("input[type='text'], input[type='email']").value.trim();
+    
+    if (inputUser !== "") {
+      const savedEmail = localStorage.getItem("registered_email");
+      const savedName = localStorage.getItem("registered_name");
+      let finalName = "";
+
+      // 1. Kung tumugma sa email na ginamit sa Sign Up
+      if (savedEmail && inputUser.toLowerCase() === savedEmail) {
+        finalName = savedName;
+      } else {
+        // 2. Kung bagong email o hindi naka-match: kunin ang pangalan bago ang @ at alisin ang numero
+        let cleanedName = inputUser.includes("@") ? inputUser.split("@")[0] : inputUser;
+        cleanedName = cleanedName.replace(/[0-9]/g, ''); // Tanggalin ang mga numero (tulad ng '5')
+        finalName = cleanedName.charAt(0).toUpperCase() + cleanedName.slice(1);
+      }
+
+      // I-save ang malinis na pangalan
+     // Kunin ang password na tinype ng user sa login form
+const passwordValue = document.getElementById("loginPassword").value;
+
+// I-save ang password sa eksaktong key na kailangan ng Account Settings
+localStorage.setItem("registered_password", passwordValue);
+
+// I-save ang malinis na pangalan
+localStorage.setItem("user", finalName);
+localStorage.setItem("grindmind_user", finalName);
+
+window.location.href = "courses.html"; // O kaya ay "My-account.html" kung gusto mong diretso roon
+
+    } else {
+      alert("Mangyaring maglagay ng email o username.");
+    }
+  });
+</script>
+<script src="script.js"></script>
+</body>
+</html>

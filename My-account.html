@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+  const checkUser = localStorage.getItem("grindmind_user") || localStorage.getItem("user");
+  if (!checkUser) {
+    window.location.replace("index.html");
+  }
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrindMind - My Account</title>
+  <link rel="stylesheet" href="my-account.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Main Dark Dashboard Card -->
+  <div class="dashboard-card">
+    
+    <!-- Top Header -->
+    <header class="header">
+      <div class="brand">
+        <i class="fa-solid fa-graduation-cap logo-icon"></i>
+        <span class="brand-name">GRINDMIND</span>
+      </div>
+      <a href="courses.html" class="nav-link">Back to Learning Hub</a>
+    </header>
+
+    <!-- Profile Overview Section -->
+    <section class="profile-header-card">
+      <div class="avatar-circle">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div class="user-details">
+        <h2>Jaztin</h2>
+        <p class="user-meta">Student Learner • Joined October 2026</p>
+        <button class="btn-secondary" id="editProfileBtn">Edit Profile</button>
+      </div>
+    </section>
+
+    <!-- Stat Highlights Grid (Naka-0 para sa bagong user) -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-title">Overall Progress</span>
+        <h3 class="stat-value">0%</h3>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Modules Done</span>
+        <h3 class="stat-value">0 / 9</h3>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Certificates</span>
+        <h3 class="stat-value">0</h3>
+      </div>
+    </section>
+
+    <!-- Course Progress List (Lahat ay 0% at Start Course ang status) -->
+    <section class="section-container">
+      <h3 class="section-title">MY COURSE PROGRESS</h3>
+      
+      <!-- Word Card -->
+      <div class="course-progress-card">
+        <div class="course-info">
+          <h4>Microsoft Word Mastery</h4>
+          <span class="progress-text">0 of 3 Modules Completed (0%)</span>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <a href="word-course.html" class="btn-action outline">Start Course</a>
+      </div>
+
+      <!-- Excel Card -->
+      <div class="course-progress-card">
+        <div class="course-info">
+          <h4>Microsoft Excel Essentials</h4>
+          <span class="progress-text">0 of 3 Modules Completed (0%)</span>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <a href="excel-course.html" class="btn-action outline">Start Course</a>
+      </div>
+
+      <!-- PowerPoint Card -->
+      <div class="course-progress-card">
+        <div class="course-info">
+          <h4>Microsoft PowerPoint Design</h4>
+          <span class="progress-text">0 of 3 Modules Completed (0%)</span>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <a href="powerpoint-course.html" class="btn-action outline">Start Course</a>
+      </div>
+    </section>
+
+    <!-- Account Settings -->
+    <section class="section-container">
+      <h3 class="section-title">ACCOUNT SETTINGS</h3>
+      <div class="settings-list">
+        <div class="setting-item">
+          <div>
+            <label>Email Address</label>
+            <p id="displayEmail">jaztin@example.com</p>
+          </div>
+          <button class="btn-link">Change</button>
+        </div>
+        <div class="setting-item">
+  <div>
+    <label>Password</label>
+    <p id="displayPassword">••••••••••••</p>
+  </div>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <i class="fa-solid fa-eye" id="toggleAccountPassword" style="cursor: pointer;"></i>
+    <button class="btn-link">Change</button>
+  </div>
+</div>
+
+      <button class="btn-logout" id="logout-btn">Log Out</button>
+    </section>
+
+  </div>
+  <!-- Edit Profile Modal -->
+<div id="editProfileModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+    <div class="modal-content" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #ff6584; padding: 30px; border-radius: 16px; width: 380px; text-align: center; color: white; position: relative; box-shadow: 0 15px 35px rgba(255, 101, 132, 0.2);">
+        
+        <!-- Modal Close Button (X) -->
+        <button id="closeModalBtn" style="position: absolute; top: 15px; right: 18px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #ff6584; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; transition: all 0.2s;">✕</button>
+        
+        <h3 style="margin: 0 0 8px 0; color: #ff6584; font-size: 22px; font-weight: 600;">Edit Profile Picture</h3>
+        <p style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Upload a new photo or manage your current avatar.</p>
+        
+        <!-- Preview Box kung may kasalukuyang profile picture -->
+        <div id="currentPhotoPreview" style="display: none; position: relative; margin: 0 auto 20px auto; width: 100px; height: 100px;">
+            <img id="previewImage" src="" alt="Current Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #ff6584;">
+            <button id="removePhotoBtn" title="Remove Profile Picture" style="position: absolute; top: -5px; right: -5px; background: #ff6584; color: white; border: none; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">✕</button>
+        </div>
+
+        <!-- File Input Container -->
+        <div id="fileInputContainer" style="margin-bottom: 25px;">
+            <input type="file" id="modalFileInput" accept="image/*" style="color: #d0c8e0; font-size: 12px; background: rgba(255, 255, 255, 0.03); padding: 12px; border-radius: 8px; border: 1px dashed rgba(255, 101, 132, 0.4); width: 100%; box-sizing: border-box; cursor: pointer;">
+        </div>
+        
+        <!-- Save Changes Button -->
+        <div>
+            <button id="modalOkBtn" style="background: linear-gradient(135deg, #ff6584 0%, #e05370 100%); color: white; border: none; padding: 12px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 15px; box-shadow: 0 4px 15px rgba(255, 101, 132, 0.3);">Save Changes</button>
+        </div>
+    </div>
+</div>
+<script>
+  document.getElementById("logout-btn").addEventListener("click", function() {
+    localStorage.removeItem("grindmind_user");
+    window.location.href = "index.html";
+  });
+</script>
+<script>
+  // 1. Tignan kung may naka-log in
+  const activeUser = localStorage.getItem("grindmind_user") || localStorage.getItem("user");
+
+  // 2. Kung WALANG naka-log in, i-redirect agad pabalik sa index.html
+  if (!activeUser) {
+    window.location.href = "index.html";
+  } else {
+    // 3. KUNG MERONG NAKA-LOG IN, i-update ang pangalan sa screen
+    const userHeading = document.querySelector(".user-details h2");
+    if (userHeading) {
+      userHeading.textContent = activeUser;
+    }
+  }
+
+  // 4. Log Out button functionality
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function() {
+      localStorage.removeItem("grindmind_user");
+      localStorage.removeItem("user");
+      window.location.href = "index.html";
+    });
+  }
+</script>
+<script>
+  // Para sa Logout button mo na nandyan na
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    localStorage.removeItem("user");
+    localStorage.removeItem("grindmind_user");
+    window.location.href = "log-in.html";
+  });
+
+  // IDAGDAG ITO: Para kusang lumabas ang Email at Password mula sa Sign-Up / Log-In
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedEmail = localStorage.getItem("registered_email");
+    const savedPassword = localStorage.getItem("registered_password");
+
+    const emailDisplay = document.getElementById("displayEmail");
+    const passwordDisplay = document.getElementById("displayPassword");
+
+    if (savedEmail && emailDisplay) {
+      emailDisplay.textContent = savedEmail;
+    }
+
+    if (savedPassword && passwordDisplay) {
+      // Gagawing dots (•) base sa eksaktong haba ng password na in-type mo
+      passwordDisplay.textContent = "•".repeat(savedPassword.length);
+    }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const editProfileBtn = document.getElementById("editProfileBtn");
+        const modal = document.getElementById("editProfileModal");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const modalOkBtn = document.getElementById("modalOkBtn");
+        const modalFileInput = document.getElementById("modalFileInput");
+        const avatarCircle = document.querySelector(".avatar-circle");
+        
+        const currentPhotoPreview = document.getElementById("currentPhotoPreview");
+        const previewImage = document.getElementById("previewImage");
+        const removePhotoBtn = document.getElementById("removePhotoBtn");
+
+        // Tabi muna sa variable ang default HTML ng avatar icon para maibalik kung i-remove
+        const defaultAvatarHTML = avatarCircle ? avatarCircle.innerHTML : `<i class="fa-solid fa-user"></i>`;
+        const defaultAvatarStyle = {
+            background: avatarCircle ? avatarCircle.style.background : "",
+            padding: avatarCircle ? avatarCircle.style.padding : ""
+        };
+
+        // Function para i-render ang avatar sa profile page
+        function renderAvatar() {
+            const savedImage = localStorage.getItem("profile_picture");
+            if (savedImage && avatarCircle) {
+                avatarCircle.style.background = "none";
+                avatarCircle.style.padding = "0";
+                avatarCircle.style.overflow = "hidden";
+                avatarCircle.innerHTML = `<img src="${savedImage}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">`;
+            } else if (avatarCircle) {
+                avatarCircle.style.background = defaultAvatarStyle.background;
+                avatarCircle.style.padding = defaultAvatarStyle.padding;
+                avatarCircle.innerHTML = defaultAvatarHTML;
+            }
+        }
+
+        // Una munang i-render ang avatar kapag nag-load ang page
+        renderAvatar();
+
+        // 1. Kapag pinindot ang "Edit Profile" button
+        if (editProfileBtn) {
+            editProfileBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                const savedImage = localStorage.getItem("profile_picture");
+
+                if (savedImage) {
+                    // Kung may nakatagong litrato, ipakita ang preview box at ang remove (X) button
+                    previewImage.src = savedImage;
+                    currentPhotoPreview.style.display = "block";
+                } else {
+                    currentPhotoPreview.style.display = "none";
+                }
+
+                modalFileInput.value = ""; // i-clear ang input
+                if (modal) modal.style.display = "flex";
+            });
+        }
+
+        // 2. Isara ang modal kapag pinindot ang main X button sa itaas
+        function closeModal() {
+            if (modal) modal.style.display = "none";
+            if (modalFileInput) modalFileInput.value = "";
+        }
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener("click", closeModal);
+        }
+
+        // 3. Kapag pinindot ang maliit na "X" (Remove Photo) button sa tabi ng image preview
+        if (removePhotoBtn) {
+            removePhotoBtn.addEventListener("click", function () {
+                localStorage.removeItem("profile_picture"); // tatanggalin sa localStorage
+                currentPhotoPreview.style.display = "none"; // itatago ang preview
+                modalFileInput.value = ""; // lilinisin ang file picker
+                renderAvatar(); // ibabalik agad sa default icon ang profile avatar
+            });
+        }
+
+        // 4. Kapag pinindot ang "Save Changes"
+        if (modalOkBtn) {
+            modalOkBtn.addEventListener("click", function () {
+                const file = modalFileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const base64Image = e.target.result;
+                        localStorage.setItem("profile_picture", base64Image);
+                        renderAvatar();
+                        closeModal();
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    // Kung walang bagong file na pinili ngunit na-remove o nanatili, i-update lang ang avatar
+                    renderAvatar();
+                    closeModal();
+                }
+            });
+        }
+    });
+</script>
+</script>
+<script src="script.js"></script>
+</body>
+</html>

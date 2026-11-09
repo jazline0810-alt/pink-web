@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrindMind Learning Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 1. HEADER (Logo at Nav sa taas) -->
+   <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 40px 25px 40px; background: transparent;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <i class="fa-solid fa-graduation-cap" style="color: #ff4d6d; font-size: 1.6rem;"></i>
+            <span style="color: #ff4d6d; font-size: 1.3rem; font-weight: 700; letter-spacing: 1px;">GRINDMIND</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a href="my-account.html" style="color: #ff4d6d; text-decoration: none; font-weight: 600;">My Account</a>
+            <a href="index.html" style="color: #ffffff; text-decoration: none; font-weight: 600;">Back to Home</a>
+        </div>
+    </header>
+
+    <!-- 2. WELCOME BANNER (Nasa labas na rin, nakalutang sa taas ng courses) -->
+    <div class="hub-welcome-section">
+        <h2 id="welcomeHeading" class="welcome-title">
+            <span class="white-text">WELCOME TO YOUR</span> <span class="pink-text">LEARNING HUB!</span>
+        </h2>
+        <p>Choose Microsoft Office Skill to start learning step by step.</p>
+    </div>
+
+    <!-- 3. MAIN CONTAINER PARA SA MGA COURSE CARDS LANG -->
+    <div class="container" style="margin-top: 20px;">
+        <div class="course-grid">
+            
+            <!-- Microsoft Word Card (Blue Theme) -->
+            <div class="course-table word-table">
+                <h3>MICROSOFT WORD</h3>
+                <p>Master document creation, formatting, layouts, and professional reports.</p>
+                <div class="course-details">• 3 Modules • Quizzes Included • Practical Challenges</div>
+                <a href="word-course.html" class="course-action-btn word-action-btn">START WORD COURSE</a>
+            </div>
+
+            <!-- Microsoft Excel Card (Green Theme) -->
+            <div class="course-table excel-table">
+                <h3>MICROSOFT EXCEL</h3>
+                <p>Learn spreadsheet basics, data organization, formulas, and functions.</p>
+                <div class="course-details">• 3 Modules • Quizzes Included • Practical Challenges</div>
+                <a href="excel-course.html" class="course-action-btn excel-action-btn">START EXCEL COURSE</a>
+            </div>
+
+            <!-- Microsoft PowerPoint Card (Orange Theme) -->
+            <div class="course-table ppt-table">
+                <h3>MICROSOFT POWERPOINT</h3>
+                <p>Create compelling slide presentations and master visual tools.</p>
+                <div class="course-details">• 3 Modules • Quizzes Included • Practical Challenges</div>
+                <a href="powerpoint-course.html" class="course-action-btn ppt-action-btn">START POWERPOINT COURSE</a>
+            </div>
+
+        </div>
+    </div>
+<script>
+  const userName = localStorage.getItem("user");
+  console.log("Pangalan na nakuha:", userName);
+
+  if (userName) {
+    document.getElementById("welcomeHeading").innerHTML = 
+      `<span class="white-text">WELCOME, ${userName.toUpperCase()}! TO YOUR</span> <span class="pink-text">LEARNING HUB!</span>`;
+  }
+</script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f0a15; /* GrindMind Dark Theme Background */
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Upper Right SIGN UP link */
+.top-signup-link {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.top-signup-link:hover {
+    color: #f75c96; /* Pink accent on hover */
+}
+
+/* Main Form Wrapper */
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header Title */
+.title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 35px;
+}
+
+/* Input Fields Container */
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: #a099a8;
+}
+
+.input-container input:focus {
+    border-color: #f75c96;
+}
+
+/* Password Box + Inline FORGOT? Link */
+.password-container input {
+    padding-right: 90px; /* Space for FORGOT? text */
+}
+
+.forgot-link {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a099a8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.forgot-link:hover {
+    color: #f75c96;
+}
+
+/* LOG IN Button Text */
+.btn-login-text {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin: 15px 0 25px 0;
+    transition: color 0.3s;
+}
+
+.btn-login-text:hover {
+    color: #f75c96;
+}
+
+/* Separator Line with "or" */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px dashed #665b75;
+}
+
+.separator span {
+    padding: 0 15px;
+    color: #a099a8;
+    font-size: 0.95rem;
+}
+
+/* Social Buttons */
+.social-logins {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-social {
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 2px;
+    color: #4a90e2; /* Blue accent text katulad sa drawing */
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-social:hover {
+    border-color: #4a90e2;
+    background-color: rgba(74, 144, 226, 0.1);
+}
+/* 1. PINK BUTTON sa Taas (SIGN UP) */
+.top-signup-link {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background-color: #ff5b99; /* GrindMind Pink */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 8px; /* Curve corners */
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.top-signup-link:hover {
+    background-color: #e04b83; /* Darker pink on hover */
+    color: #ffffff;
+}
+
+.top-signup-link:active {
+    transform: scale(0.96);
+}
+
+
+/* 2. PINK BUTTON sa Baba (LOG IN) */
+.btn-login-text {
+    width: 100%;
+    padding: 13px;
+    background-color: #ff5b99; /* GrindMind Pink */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px; /* Curve corners */
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin: 15px 0 20px 0;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-login-text:hover {
+    background-color: #e04b83; /* Darker pink on hover */
+}
+
+.btn-login-text:active {
+    transform: scale(0.98);
+}
+/* Terms & Privacy Policy Text sa Baba */
+.terms-text {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #a099a8; /* Muted gray text para malinis tingnan */
+    line-height: 1.4;
+    text-align: center;
+}
+
+.terms-text a {
+    color: #ffffff; /* Nakalitaw na puting teksto para sa links */
+    font-weight: 600; /* Bold katulad ng sa drawing mo */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.terms-text a:hover {
+    color: #ff5b99; /* Magiging pink kapag itinapat ang mouse cursor */
+    text-decoration: underline;
+}
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  width: 100%;
+  /* Magbigay ng sapat na espasyo sa kanan para sa eye icon at forgot link */
+  padding-right: 95px; 
+}
+
+/* Pwesto ng Eye Icon */
+#toggleLoginPassword {
+  position: absolute;
+  right: 75px; /* Katabi ng forgot link */
+  cursor: pointer;
+  color: #888;
+}
+
+#toggleLoginPassword:hover {
+  color: #fff;
+}
+.password-container .forgot-link {
+  position: absolute;
+  right: 15px;
+  font-size: 11px;
+  color: #b0b0b0;
+  text-decoration: none; /* Walang line sa simula */
+  transition: color 0.3s ease;
+}
+
+.password-container .forgot-link:hover {
+  color: #1e90ff;        /* Magiging blue kapag tinapatan ng mouse */
+  text-decoration: none; /* Sinisigurong walang line kahit i-hover */
+}

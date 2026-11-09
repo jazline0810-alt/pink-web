@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1.2 | GrindMind</title>
+    <link rel="stylesheet" href="module-1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <a href="word-course.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back to Course Overview</a>
+        <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i><span>GRINDMIND.</span></div>
+        <div class="user-profile"><span>Welcome, <strong id="userName">Learner</strong>!</span></div>
+    </header>
+
+    <main class="page-container">
+        <section class="course-header-section">
+            <span class="course-category">COURSE 1: MICROSOFT WORD</span>
+            <h1 class="module-title">Module 2 : Tables, Headers & Page Layouts</h1>
+        </section>
+
+        <!-- Lessons List Navigation -->
+        <section class="lessons-list">
+            <div class="lesson-card" onclick="window.location.href='lesson-1.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#00d2ff;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info"><span class="lesson-tag">Lesson 2.1</span><h3 class="lesson-title-text">Inserting & Formatting Tables </h3></div>
+            </div>
+
+            <div class="lesson-card active">
+                <div class="card-left-border" style="display:block;"></div>
+                <div class="lesson-check-icon" style="color:#00d2ff;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info"><span class="lesson-tag">Lesson 2.2 (Current)</span><h3 class="lesson-title-text">Page Margins, Orientation & Page Breaks</h3></div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='word-challenge.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="lesson-info"><span class="lesson-tag tag-quiz"> Hands-On Challenge</span><h3 class="lesson-title-text">Formatting an Official Corporate Memorandum</h3></div>
+            </div>
+        </section>
+
+        <section class="active-lesson-area">
+            <div class="active-badge">LESSON 2.2</div>
+            <h2 class="active-heading">Page Margins, Orientation & Page Breaks</h2>
+
+            <div class="video-card-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h2>Lesson Overview & Key Takeaways</h2>
+                </div>
+                <div class="overview-body">
+                    <p>In this lesson, you will learn how to customize document structure and control page flow properly:</p>
+                    <ul>
+                        <li><strong>Page Margins :</strong> Adjusting spacing around the edges of your document for standard printing and readability.</li>
+                        <li><strong>Orientation:</strong> Switching smoothly between Portrait (vertical) and Landscape (horozontal) layouts.</li>
+                        <li><strong> Page Breaks:</strong> Manually pusing content to a new page without spamming the Enter key.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" onclick="window.location.href='word-m2L2.1.html'">
+                    <i class="fa-solid fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn next-btn" onclick="window.location.href='word-challenge.html'" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #0d1117;">
+                    Next <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) document.getElementById("userName").textContent = savedName;
+    </script>
+</body>
+</html>

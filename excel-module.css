@@ -1,0 +1,396 @@
+ /* GrindMind Excel Module Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0d1117;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* Top Navigation Header */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+}
+
+.back-link {
+    color: #ff5b99;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #ff5b99;
+}
+
+.brand-logo i {
+    color: #ff5b99;
+}
+
+.user-profile {
+    font-size: 14px;
+    color: #8b949e;
+}
+
+.user-profile strong {
+    color: #ff5b99;
+}
+
+/* Page Container & Layout */
+.page-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.course-header-section {
+    margin-bottom: 25px;
+}
+
+.course-category {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.module-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 5px;
+}
+
+/* Lessons Sidebar List */
+.lessons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.lesson-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.lesson-card:hover {
+    border-color: #00ff88;
+}
+
+.lesson-card.active {
+    border-color: #00ff88;
+    background: rgba(0, 255, 136, 0.03);
+}
+
+.card-left-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #00ff88;
+    display: none;
+}
+
+.lesson-card.active .card-left-border {
+    display: block;
+}
+
+.lesson-check-icon {
+    font-size: 18px;
+    color: #8b949e;
+}
+
+.lesson-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.lesson-tag {
+    font-size: 11px;
+    color: #00ff88;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.lesson-tag.tag-quiz {
+    color: #00ff88;
+}
+
+.lesson-title-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Active Lesson Content Area */
+.active-lesson-area {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.active-badge {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 4px;
+}
+
+.active-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Video Wrapper */
+.video-card-container {
+    margin-bottom: 25px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #30363d;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Overview Card */
+.overview-card {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.overview-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.overview-card-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.overview-body p {
+    font-size: 14px;
+    color: #8b949e;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.overview-body ul {
+    margin-left: 20px;
+    color: #8b949e;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.overview-body li strong {
+    color: #ffffff;
+}
+
+/* Bottom Navigation Buttons */
+.bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #30363d;
+    padding-top: 20px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    background: #21262d;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #30363d;
+    border-color: #8b949e;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* Quiz Option Buttons */
+.quiz-option-btn {
+    width: 100%;
+    text-align: left;
+    padding: 12px 15px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #ffffff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.quiz-option-btn:hover {
+    background: #21262d;
+    border-color: #00ff88;
+}
+
+/* Modal Overlay & Card for Excel */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.custom-modal-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 35px 30px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+.modal-icon-badge {
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 255, 136, 0.15);
+    border: 2px solid #00ff88;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    font-size: 30px;
+    color: #00ff88;
+}
+
+.custom-modal-card h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.custom-modal-card p {
+    color: #8b949e;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.custom-modal-card p strong {
+    color: #00ff88;
+}
+
+.modal-primary-btn {
+    background: linear-gradient(135deg, #00ff88, #00b8ff);
+    color: #0d1117;
+    border: none;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+}
+.submit-btn {
+    width: 100%;
+    padding: 15px 25px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    color: #121212;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #1aff95 0%, #00e676 100%);
+    transform: translateY(-2px);
+    box-shadow: none;
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+.fa-regular fa-circle choice-icon {
+    font-size: 16px;
+    color: #ffffff; /* Palitan mo ito ng gusto mong kulay, halimbawa: #00ff88 para maging green o #ffbb00 para maging yellow */
+}
+

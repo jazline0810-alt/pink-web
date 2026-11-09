@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course 3: Microsoft PowerPoint - GrindMind</title>
+    <link rel="stylesheet" href="powerpoint.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header: Logo sa Kaliwa, Back to courses sa Kanan -->
+        <header class="hub-header">
+            <a href="courses.html" class="logo">
+                <span>🎓</span> GRINDMIND
+            </a>
+            <a href="courses.html" class="back-to-courses">
+                &lt; Back to Courses
+            </a>
+        </header>
+
+        <!-- Course Header & Progress Bar -->
+        <div class="course-header-section">
+            <h2>COURSE 2: MICROSOFT POWERPOINT</h2>
+            <p>Create compelling slide presentations, master visual layouts, and animations.</p>
+            
+            <div class="progress-container">
+                <span>Progress Bar: 0 / 3 Modules Completed (0%)</span>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Modules -->
+        <div class="modules-section">
+            <h3 class="modules-title">COURSE MODULES</h3>
+
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-info">
+                    <h4>MODULE 1:Slides Basics & Workspace Navigation </h4>
+                    <p>• Lesson 1.1: Navigating Slides,Layouts, & Presetation Views </p>
+                    <p>• Lesson 1.2: Adding Text, Shapes, Images, & Formatting Elements</p>
+                    <p>• Quiz 1: Module 1 Knowledge Check</p>
+                </div>
+                <a href="ppt-lesson1.html" class="action-btn start-btn">START</a>
+            </div>
+
+            <!-- Module 2 -->
+            <div id= "ppt-mod2-card" class="module-card locked">
+                <div class="module-info">
+                    <h4>MODULE 2: Visual Design & Slide Mastery </h4>
+                    <p>• Lesson 2.1: Color Themse, Typography, & Visual Hierarchy </p>
+                    <p>• Lesson 2.2: Working with Icons, SmartArt, & Data Graphics </p>
+                    <p>• Hands-On Challenge: Designing a 5-Slide Pitch Deck </p>
+                </div>
+            
+                <span class="status-label">LOCKED 🔒</span>
+            </div>
+
+            <!-- Module 3 -->
+            <div id= "ppt-mod3-card" class="module-card locked">
+                <div class="module-info">
+                    <h4>MODULE 3: Transitions, Animations, & Presenting </h4>
+                    <p>• Lesson 3.1: Applying Smooth Transitions & Subtle Animations</p>
+                    <p>• Lesson 3.2: Advanced Slide Shows Timings & Presenter Tools </p>
+                    <p>• Final Assessment: Interactive Presentation Project</p>
+                </div>
+        
+                <span class="status-label">LOCKED 🔒</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Kinuha natin ang user at tinanggalan ng ekstra space (.trim())
+    const currentUser = (localStorage.getItem("user") || "guest").trim();
+    
+    // Binabasa ang progress object
+    const excelProgress = JSON.parse(localStorage.getItem(currentUser + "_ppt_progress")) || {};
+
+    // UNLOCK MODULE 2
+    if (pptProgress.mod1 === true) {
+        const mod2Card = document.getElementById("ppt-mod2-card");
+        if (mod2Card) {
+            mod2Card.classList.remove("locked");
+            const statusLabel = mod2Card.querySelector(".status-label");
+            if (statusLabel) {
+                statusLabel.outerHTML =statusLabel.outerHTML = `<a href="ppt-module2l.1.html" class="action-btn start-btn">START</a>`;
+        }
+    }
+}
+
+    // UNLOCK MODULE 3
+    if (pptProgress.mod2 === true) {
+        const mod3Card = document.getElementById("ppt-mod3-card");
+        if (mod3Card) {
+            mod3Card.classList.remove("locked");
+            const statusLabel = mod3Card.querySelector(".status-label");
+            if (statusLabel) {
+                statusLabel.outerHTML = statusLabel.outerHTML = `<a href="pptm3l1.html" class="action-btn start-btn">START</a>`;
+            }
+        }
+    }
+});
+</script>
+</body>
+</script>
+</html>

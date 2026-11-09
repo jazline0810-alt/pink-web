@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Quiz 1 | GrindMind</title>
+    <link rel="stylesheet" href="excel-module.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <a href="excel-course.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back to Course Overview</a>
+        <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i><span>GRINDMIND</span></div>
+        <div class="user-profile"><span>Welcome, <strong id="userName">Learner</strong>!</span></div>
+    </header>
+
+    <main class="page-container">
+        <section class="course-header-section">
+            <span class="course-category" style="color: #00ff88;">COURSE 2: MICROSOFT EXCEL</span>
+            <h1 class="module-title">Module 1: Excel Interface & Basic Data Entry</h1>
+        </section>
+
+        <!-- Lessons List Navigation -->
+        <section class="lessons-list">
+            <div class="lesson-card" onclick="window.location.href='excel-lesson1.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#00ff88;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 1.1</span>
+                    <h3 class="lesson-title-text">Navigating Cells, Rows, Columns, & Worksheets</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='excel-lesson2.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#00ff88;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 1.2</span>
+                    <h3 class="lesson-title-text">Data Types, Formatting Cells, & Table Styles</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card active">
+                <div class="card-left-border" style="display:block; background: #00ff88;"></div>
+                <div class="lesson-check-icon" style="color:#00ff88;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag tag-quiz">Quiz 1 (Current)</span>
+                    <h3 class="lesson-title-text">Module 1 Knowledge Check</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Quiz Area -->
+        <section class="active-lesson-area">
+            <div class="active-badge" style="color: #00b8ff; border-color: #00b8ff; background: rgba(0, 184, 255, 0.1);">QUIZ 1</div>
+            <h2 class="active-heading">Module 1 Knowledge Check</h2>
+
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <i class="fa-solid fa-list-check" style="color: #00ff88;"></i>
+                    <h2>Test Your Knowledge</h2>
+                </div>
+                <!-- Question 1 -->
+<div class="overview-card" data-question="q1">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">1. What is the main purpose of Microsoft Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. To create and edit documents</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. To organize data and perform calculations</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. To create slide presentations</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. To edit videos</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 2 -->
+<div class="overview-card" data-question="q2">
+    <div class="overview-card-header">
+       
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">2. What is a cell in Microsoft Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. The intersection of a row and a column</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. A group of worksheets</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. A type of chart</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. A tool for changing font styles</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 3 -->
+<div class="overview-card" data-question="q3">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">3. How are rows identified in Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. By letters</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. By symbols</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. By numbers</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. By colors</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 4 -->
+<div class="overview-card" data-question="q4">
+    <div class="overview-card-header">
+       
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">4. How are columns identified in Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. By numbers</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. By letters</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. By dates</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. By symbols</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 5 -->
+<div class="overview-card" data-question="q5">
+    <div class="overview-card-header">
+       
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">5. What is a worksheet in Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. A single cell in a spreadsheet</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. A formula used for calculations</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. A formatting tool</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. A spreadsheet page made up of rows and columns</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 6 -->
+<div class="overview-card" data-question="q6">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">6. Which of the following is an example of numerical data?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. Hello</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. 250</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. Good morning</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. Name</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 7 -->
+<div class="overview-card" data-question="q7">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">7. What is the purpose of cell formatting in Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. To change the appearance of data in cells</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. To delete all worksheets</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. To close the workbook</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. To remove all formulas</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 8 -->
+<div class="overview-card" data-question="q8">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">8. Which number format is most appropriate for displaying prices or expenses?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. Percentage</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. Date</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. Currency</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. Text</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 9 -->
+<div class="overview-card" data-question="q9">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">9. What is the purpose of applying a table style in Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. To delete rows and columns</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. To automatically close the workbook</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. To remove all data</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. To improve the appearance and readability of a table</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 10 -->
+<div class="overview-card" data-question="q10">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #00ff88; font-weight: bold; margin-bottom: 15px;">10. Which of the following is an example of a date entry in Excel?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> A. 150</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> B. October 24, 2026</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> C. Hello</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #00ff88; margin-right: 8px ;"></i> D. =SUM(A1:A5)</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Submit Button -->
+<button type="button" class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+
+
+<!-- Results Container -->
+<div id="result-container" class="results-card" style="display: none;  margin-top: 40px;">
+    <h3 id="pass-fail-text" style="font-size: 24px; margin-bottom: 10px;"></h3>
+    <h4 id="total-score-text" style="color: #ffffff; font-size: 18px; margin-bottom: 15px;"></h4>
+    <div id="breakdown-list" style="margin-bottom: 20px;"></div>
+    
+    <!-- Dito ilalagay ng JavaScript ang Try Again button kung failed -->
+    <div id="try-again-container"></div>
+</div>
+
+
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" onclick="window.location.href='excel-lesson2.html'">
+                    <i class="fa-solid fa-arrow-left"></i> Previous Lesson
+                </button>
+                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #00ff88, #00b8ff); color: #0d1117; font-weight: 700;">
+                    Finish Module <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Completion Modal Popup -->
+    <div id="completionModal" class="custom-modal-overlay">
+        <div class="custom-modal-card">
+            <div class="modal-icon-badge">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2>Excel Module 1 Completed!</h2>
+            <p>Great job! You have successfully finished <strong>Module 1: Excel Interface & Basic Data Entry</strong>.</p>
+            <button class="modal-primary-btn" onclick="goToCourse()">
+                Back to Excel Course Overview <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Clean Script Block -->
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) {
+            const userElem = document.getElementById("userName");
+            if (userElem) userElem.textContent = savedName;
+        }
+
+        function finishModule() {
+            // Save Excel module progress
+            const currentUser = localStorage.getItem("user") || "guest";
+    let excelProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
+    excelProgress.mod1 = true;
+    localStorage.setItem(currentUser + "_excel_progress", JSON.stringify(excelProgress));
+
+
+            // Display completion modal
+            const modal = document.getElementById("completionModal");
+            if (modal) {
+                modal.style.display = "flex";
+            }
+        }
+
+        function goToCourse() {
+            window.location.href = "excel-course.html";
+        }
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    for (let i = 1; i <= 10; i++) {
+        const card = document.querySelector(`[data-question="q${i}"]`);
+        if (card) {
+            const buttons = card.querySelectorAll('.quiz-option-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    buttons.forEach(btn => {
+                        btn.classList.remove('selected');
+                        const icon = btn.querySelector('.choice-icon');
+                        if (icon) {
+                            icon.className = 'fa-regular fa-circle choice-icon';
+                        }
+                    });
+
+                    this.classList.add('selected');
+                    const selectedIcon = this.querySelector('.choice-icon');
+                    if (selectedIcon) {
+                        selectedIcon.className = 'fa-solid fa-circle-dot choice-icon';
+                    }
+                });
+            });
+        }
+    }
+});
+</script>
+<script>
+   function submitQuiz() {
+    const correctAnswers = {
+        q1: "B", q2: "A", q3: "C", q4: "B", q5: "D",
+        q6: "B", q7: "A", q8: "C", q9: "D", q10: "B"
+    };
+
+    let score = 0;
+    let answeredAll = true;
+    let breakdownHTML = "";
+
+    for (let i = 1; i <= 10; i++) {
+        const qKey = `q${i}`;
+        const card = document.querySelector(`[data-question="${qKey}"]`);
+        const selectedBtn = card ? card.querySelector('.quiz-option-btn.selected') : null;
+
+        if (!selectedBtn) {
+            answeredAll = false;
+        } else {
+            const selectedValue = selectedBtn.getAttribute('data-value');
+            if (selectedValue === correctAnswers[qKey]) {
+                score++;
+                breakdownHTML += `<div class="item-correct" style="color: #00ff66; font-size: 14px; margin-bottom: 4px;">Question ${i}:Correct</div>`;
+            } else {
+                breakdownHTML += `<div class="item-incorrect" style="color: #ff4d4d; font-size: 14px; margin-bottom: 4px;">Question ${i}: Incorrect — The correct answer is ${correctAnswers[qKey]}</div>`;
+            }
+        }
+    }
+
+    const resultContainer = document.getElementById("result-container");
+    const passFailText = document.getElementById("pass-fail-text");
+    const totalScoreText = document.getElementById("total-score-text");
+    const breakdownList = document.getElementById("breakdown-list");
+
+    // Palitawin ang container
+    resultContainer.style.display = "block";
+
+    if (!answeredAll) {
+        passFailText.style.color = "#ffbb00";
+        passFailText.textContent = "Incomplete Quiz!";
+        totalScoreText.textContent = "Please answer all questions before submitting!";
+        breakdownList.innerHTML = "";
+        resultContainer.scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+
+    
+    // I-check kung Passed (7 pataas) o Failed (pababa ng 7)
+    const tryAgainContainer = document.getElementById("try-again-container");
+
+    if (score >= 7) {
+        passFailText.style.color = "#00ff88";
+        passFailText.style.fontSize = "18px";
+        passFailText.innerHTML = `<i class="fa-solid fa-trophy"></i> Congrats, You Passed! 🎉`;
+        
+        // Alisin ang try again button kapag pumasa
+        if (tryAgainContainer) {
+            tryAgainContainer.innerHTML = "";
+        }
+    } else {
+        passFailText.style.color = "#ff4d4d";
+        passFailText.style.fontSize = "18px";
+        passFailText.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> You Failed. Try Again! 💪`;
+        
+        // ILAGAY ITO: Dito lumilitaw ang Try Again button kapag nag-fail
+        if (tryAgainContainer) {
+            tryAgainContainer.innerHTML = `
+                <button type="button" class="submit-btn" onclick="resetQuiz()" style="background: linear-gradient(135deg, #ff4d4d, #cc0000); color: #fff; box-shadow: none; margin-top: 20px;">
+                    <i class="fa-solid fa-rotate-right"></i> Try Again
+                </button>
+            `;
+        }
+    }
+
+    totalScoreText.textContent = `Your Total Score: ${score} / 10`;
+    breakdownList.innerHTML = breakdownHTML;
+
+    // Auto-scroll papunta sa resulta
+    resultContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Function para sa Try Again Button (Magre-reset ng quiz)
+function resetQuiz() {
+    // Alisin lahat ng piniling sagot
+    const selectedButtons = document.querySelectorAll('.quiz-option-btn.selected');
+    selectedButtons.forEach(btn => {
+        btn.classList.remove('selected');
+        const icon = btn.querySelector('.choice-icon');
+        if (icon) {
+            icon.className = 'fa-regular fa-circle choice-icon';
+        }
+    });
+
+    // Itago ulit ang result container
+    document.getElementById("result-container").style.display = "none";
+
+    // I-scroll pabalik sa taas ng quiz
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+
+</script>
+</body>
+</html>

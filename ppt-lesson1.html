@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint Lesson 1.1 | GrindMind</title>
+    <link rel="stylesheet" href="ppt-module.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <a href="powerpoint-course.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back to Course Overview</a>
+        <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i><span>GRINDMIND</span></div>
+        <div class="user-profile"><span>Welcome, <strong id="userName">Learner</strong>!</span></div>
+    </header>
+
+    <main class="page-container">
+        <section class="course-header-section">
+            <span class="course-category" style="color: #ff8800;">COURSE 3: MICROSOFT POWERPOINT</span>
+            <h1 class="module-title">Module 1: Slide Basics & Workspace Navigation</h1>
+        </section>
+
+        <!-- Lessons List Navigation -->
+        <section class="lessons-list">
+            <div class="lesson-card active">
+                <div class="card-left-border" style="display:block; background: #ff8800;"></div>
+                <div class="lesson-check-icon" style="color:#ff8800;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 1.1 (Current)</span>
+                    <h3 class="lesson-title-text">Navigating Slides, Layouts, & Presentation Views</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='powerpoint-lesson2.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 1.2</span>
+                    <h3 class="lesson-title-text">Adding Text, Shapes, Images, & Formatting Elements</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='ppt-quiz.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag tag-quiz">Quiz 1</span>
+                    <h3 class="lesson-title-text">Module 1 Knowledge Check</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="active-lesson-area">
+            <div class="active-badge" style="color: #ff8800; border-color: #ff8800; background: rgba(255, 136, 0, 0.1);">LESSON 1.1</div>
+            <h2 class="active-heading">Navigating Slides, Layouts, & Presentation Views</h2>
+
+            <div class="video-card-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PowerPoint Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <i class="fa-solid fa-book-open" style="color: #ff8800;"></i>
+                    <h2>Lesson Overview & Key Takeaways</h2>
+                </div>
+                <div class="overview-body">
+                    <p>Welcome to PowerPoint Design! In this lesson, you will master the basics of presentation structure:</p>
+                    <ul>
+                        <li><strong>Slides:</strong> The individual pages that make up your visual presentation deck.</li>
+                        <li><strong>Layouts:</strong> Pre-arranged placeholders for titles, text boxes, and multimedia content.</li>
+                        <li><strong>Presentation Views:</strong> Switching between Normal, Slide Sorter, and Reading views.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" disabled><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                <button class="nav-btn next-btn" onclick="window.location.href='ppt-lesson2.html'" style="background: linear-gradient(135deg, #ff8800, #ffbb00); color: #0d1117; font-weight: 700;">
+                    Next Lesson <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) document.getElementById("userName").textContent = savedName;
+    </script>
+</body>
+</html>

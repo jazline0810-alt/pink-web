@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 1 | GrindMind</title>
+    <link rel="stylesheet" href="module-1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <a href="word-course.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back to Course Overview</a>
+        <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i><span>GRINDMIND</span></div>
+        <div class="user-profile"><span>Welcome, <strong id="userName">Learner</strong>!</span></div>
+    </header>
+
+    <main class="page-container">
+        <section class="course-header-section">
+            <span class="course-category">COURSE 1: MICROSOFT WORD</span>
+            <h1 class="module-title">Module 1: Document Basics & Ribbon Navigation</h1>
+        </section>
+
+        <!-- Lessons List Navigation -->
+        <section class="lessons-list">
+            <div class="lesson-card" onclick="window.location.href='lesson1.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#00d2ff;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info"><span class="lesson-tag">Lesson 1.1</span><h3 class="lesson-title-text">Understanding the Word Interface & Ribbon</h3></div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='lesson2.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#00d2ff;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info"><span class="lesson-tag">Lesson 1.2</span><h3 class="lesson-title-text">Font Formatting, Paragraph Alignment & Spacing</h3></div>
+            </div>
+
+            <div class="lesson-card active">
+                <div class="card-left-border" style="display:block;"></div>
+                <div class="lesson-check-icon" style="color:#00d2ff;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info"><span class="lesson-tag tag-quiz">Quiz 1 (Current)</span><h3 class="lesson-title-text">Module 1 Knowledge Check</h3></div>
+            </div>
+        </section>
+
+        <section class="active-lesson-area">
+            <div class="active-badge" style="color: #00d2ff;">QUIZ 1</div>
+            <h2 class="active-heading">Module 1 Knowledge Check</h2>
+
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <i class="fa-solid fa-list-check"></i>
+                    <h2>Test Your Knowledge</h2>
+                </div>
+                <!-- Question 1 -->
+<div class="overview-card" data-question="q1">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">1. What is the main purpose of Microsoft Word?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. To create and edit documents</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. To edit videos</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. To manage databases</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i>D. To create animations</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 2 -->
+<div class="overview-card" data-question="q2">
+    <div class="overview-card-header">
+       
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">2. What is the Ribbon in Microsoft Word?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. The area where you type your document</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. The strip containing tabs and groups of commands</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. The bar showing the page number</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. The area displaying the file name only</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 3 -->
+<div class="overview-card" data-question="q3">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">3. Which tab contains the Bold, Italic, and Font Size commands?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. Insert</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. Review</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. Home</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. View</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 4 -->
+<div class="overview-card" data-question="q4">
+    <div class="overview-card-header">
+       
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">4. What is the function of the Title Bar?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. To change paragraph spacing</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i>B. To display the document name</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. To insert a table</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i>D. To check spelling and grammar</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 5 -->
+<div class="overview-card" data-question="q5">
+    <div class="overview-card-header">
+       
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">5. What is the purpose of the Quick Access Toolbar?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. To display all document pages</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. To provide quick access to frequently used commands</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i>C. To change the page color only</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. To display the word count only</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 6 -->
+<div class="overview-card" data-question="q6">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">6. Which command makes text appear thicker or darker?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. Italic</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. Underline</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. Bold</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i>D. Justify</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 7 -->
+<div class="overview-card" data-question="q7">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">7. Which command makes text appear slanted?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. Bold</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. Italic</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. Underline</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. Center</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 8 -->
+<div class="overview-card" data-question="q8">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">8. Which alignment makes text even along both the left and right margins?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. Left</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. Center</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. Right</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. Justify</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 9 -->
+<div class="overview-card" data-question="q9">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">9. What does line spacing control in Microsoft Word?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. The vertical space between lines of text</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. The size of the font</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. The color of the text</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. The document's file name</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Question 10 -->
+<div class="overview-card" data-question="q10">
+    <div class="overview-card-header">
+        
+    </div>
+    <div class="overview-body">
+        <p style="color: #3b82f6; font-weight: bold; margin-bottom: 15px;">10. Which alignment places text in the middle between the left and right margins?</p>
+        <ul style="list-style: none; margin-left: 0;">
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="A"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> A. Left</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="B"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> B. Center</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="C"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> C. Right</button>
+            </li>
+            <li style="margin-bottom: 10px;">
+                <button type="button" class="quiz-option-btn" data-value="D"><i class="fa-regular fa-circle choice-icon" style="color: #3b82f6; margin-right: 8px ;"></i> D. Justify</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Submit Button -->
+<button type="button" class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+
+
+<!-- Results Container -->
+<div id="result-container" class="results-card" style="display: none;  margin-top: 40px;">
+    <h3 id="pass-fail-text" style="font-size: 24px; margin-bottom: 10px;"></h3>
+    <h4 id="total-score-text" style="color: #ffffff; font-size: 18px; margin-bottom: 15px;"></h4>
+    <div id="breakdown-list" style="margin-bottom: 20px;"></div>
+    
+    <!-- Dito ilalagay ng JavaScript ang Try Again button kung failed -->
+    <div id="try-again-container"></div>
+</div>
+</div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" onclick="window.location.href='word-lesson2.html'">
+                    <i class="fa-solid fa-arrow-left"></i> Previous Lesson
+                </button>
+                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #0d1117;">
+                    Finish Module <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+<!-- Custom Completion Modal Popup -->
+<div id="completionModal" class="custom-modal-overlay">
+    <div class="custom-modal-card">
+        <div class="modal-icon-badge">
+            <i class="fa-solid fa-trophy"></i>
+        </div>
+        <h2> Word Module 1 Completed!</h2>
+        <p>Great job! You have successfully finished <strong>Module 1: Document Basics & Ribbon Navigation</strong>.</p>
+        <button class="modal-primary-btn" onclick="goToCourse()">
+            Back to Course Overview <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+</div>
+<script>
+         // User profile check
+    const savedName = localStorage.getItem("user");
+    if (savedName) {
+        const userElem = document.getElementById("userName");
+        if (userElem) userElem.textContent = savedName;
+    }
+
+    // Function kapag pinindot ang Finish Module
+    function finishModule() {
+        // 1. Save progress sa localStorage
+        let wordProgress = JSON.parse(localStorage.getItem("word_progress")) || {};
+        wordProgress.mod1 = true;
+        localStorage.setItem("word_progress", JSON.stringify(wordProgress));
+
+        // 2. Ipakita ang custom modal popup sa page
+        const modal = document.getElementById("completionModal");
+        if (modal) {
+            modal.style.display = "flex";
+        }
+    }
+
+    // Function kapag pinindot ang "Go to Course Overview" sa loob ng modal
+    function goToCourse() {
+        window.location.href = "word-course.html";
+    }
+        
+    </script>
+      <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    for (let i = 1; i <= 10; i++) {
+        const card = document.querySelector(`[data-question="q${i}"]`);
+        if (card) {
+            const buttons = card.querySelectorAll('.quiz-option-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    buttons.forEach(btn => {
+                        btn.classList.remove('selected');
+                        const icon = btn.querySelector('.choice-icon');
+                        if (icon) {
+                            icon.className = 'fa-regular fa-circle choice-icon';
+                        }
+                    });
+
+                    this.classList.add('selected');
+                    const selectedIcon = this.querySelector('.choice-icon');
+                    if (selectedIcon) {
+                        selectedIcon.className = 'fa-solid fa-circle-dot choice-icon';
+                    }
+                });
+            });
+        }
+    }
+});
+</script>
+<script>
+   function submitQuiz() {
+    const correctAnswers = {
+        q1: "A", q2: "B", q3: "C", q4: "B", q5: "B",
+        q6: "C", q7: "B", q8: "D", q9: "A", q10: "B"
+    };
+
+    let score = 0;
+    let answeredAll = true;
+    let breakdownHTML = "";
+
+    for (let i = 1; i <= 10; i++) {
+        const qKey = `q${i}`;
+        const card = document.querySelector(`[data-question="${qKey}"]`);
+        const selectedBtn = card ? card.querySelector('.quiz-option-btn.selected') : null;
+
+        if (!selectedBtn) {
+            answeredAll = false;
+        } else {
+            const selectedValue = selectedBtn.getAttribute('data-value');
+            if (selectedValue === correctAnswers[qKey]) {
+                score++;
+                breakdownHTML += `<div class="item-correct" style="color: #3b82f6; font-size: 14px; margin-bottom: 4px;">Question ${i}:Correct</div>`;
+            } else {
+                breakdownHTML += `<div class="item-incorrect" style="color: #ff4d4d; font-size: 14px; margin-bottom: 4px;">Question ${i}: Incorrect — The correct answer is ${correctAnswers[qKey]}</div>`;
+            }
+        }
+    }
+
+    const resultContainer = document.getElementById("result-container");
+    const passFailText = document.getElementById("pass-fail-text");
+    const totalScoreText = document.getElementById("total-score-text");
+    const breakdownList = document.getElementById("breakdown-list");
+
+    // Palitawin ang container
+    resultContainer.style.display = "block";
+
+    if (!answeredAll) {
+        passFailText.style.color = "#ffbb00";
+        passFailText.textContent = "Incomplete Quiz!";
+        totalScoreText.textContent = "Please answer all questions before submitting!";
+        breakdownList.innerHTML = "";
+        resultContainer.scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+
+    
+    // I-check kung Passed (7 pataas) o Failed (pababa ng 7)
+    const tryAgainContainer = document.getElementById("try-again-container");
+
+    if (score >= 7) {
+        passFailText.style.color = "#3b82f6";
+        passFailText.style.fontSize = "18px";
+        passFailText.innerHTML = `<i class="fa-solid fa-trophy"></i> Congrats, You Passed!`;
+        
+        // Alisin ang try again button kapag pumasa
+        if (tryAgainContainer) {
+            tryAgainContainer.innerHTML = "";
+        }
+    } else {
+        passFailText.style.color = "#ff4d4d";
+        passFailText.style.fontSize = "18px";
+        passFailText.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> You Failed. Try Again!`;
+        
+        // ILAGAY ITO: Dito lumilitaw ang Try Again button kapag nag-fail
+        if (tryAgainContainer) {
+            tryAgainContainer.innerHTML = `
+                <button type="button" class="submit-btn" onclick="resetQuiz()" style="background: linear-gradient(135deg, #ff4d4d, #cc0000); color: #fff; box-shadow: none; margin-top: 20px;">
+                    <i class="fa-solid fa-rotate-right"></i> Try Again
+                </button>
+            `;
+        }
+    }
+
+    totalScoreText.textContent = `Your Total Score: ${score} / 10`;
+    breakdownList.innerHTML = breakdownHTML;
+
+    // Auto-scroll papunta sa resulta
+    resultContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Function para sa Try Again Button (Magre-reset ng quiz)
+function resetQuiz() {
+    // Alisin lahat ng piniling sagot
+    const selectedButtons = document.querySelectorAll('.quiz-option-btn.selected');
+    selectedButtons.forEach(btn => {
+        btn.classList.remove('selected');
+        const icon = btn.querySelector('.choice-icon');
+        if (icon) {
+            icon.className = 'fa-regular fa-circle choice-icon';
+        }
+    });
+
+    // Itago ulit ang result container
+    document.getElementById("result-container").style.display = "none";
+
+    // I-scroll pabalik sa taas ng quiz
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+
+</script>
+</body>
+</html>
+    <script>
+       

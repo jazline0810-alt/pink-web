@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Lesson 1.2 | GrindMind</title>
+    <link rel="stylesheet" href="excel-module.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-nav">
+        <a href="excel-course.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Back to Course Overview</a>
+        <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i><span>GRINDMIND</span></div>
+        <div class="user-profile"><span>Welcome, <strong id="userName">Learner</strong>!</span></div>
+    </header>
+
+    <main class="page-container">
+        <section class="course-header-section">
+            <span class="course-category" style="color: #00ff88;">COURSE 2: MICROSOFT EXCEL</span>
+            <h1 class="module-title">Module 1: Excel Interface & Basic Data Entry</h1>
+        </section>
+
+        <!-- Lessons List Navigation -->
+        <section class="lessons-list">
+            <div class="lesson-card" onclick="window.location.href='excel-lesson1.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon" style="color:#00ff88;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 1.1</span>
+                    <h3 class="lesson-title-text">Navigating Cells, Rows, Columns, & Worksheets</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card active">
+                <div class="card-left-border" style="display:block; background: #00ff88;"></div>
+                <div class="lesson-check-icon" style="color:#00ff88;"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag">Lesson 1.2 (Current)</span>
+                    <h3 class="lesson-title-text">Data Types, Formatting Cells, & Table Styles</h3>
+                </div>
+            </div>
+
+            <div class="lesson-card" onclick="window.location.href='excel-quiz1.html'" style="cursor: pointer;">
+                <div class="lesson-check-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="lesson-info">
+                    <span class="lesson-tag tag-quiz">Quiz 1</span>
+                    <h3 class="lesson-title-text">Module 1 Knowledge Check</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="active-lesson-area">
+            <div class="active-badge" style="color: #00ff88; border-color: #00ff88;">LESSON 1.2</div>
+            <h2 class="active-heading">Data Types, Formatting Cells, & Table Styles</h2>
+
+            <div class="video-card-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Excel Tutorial" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="overview-card">
+                <div class="overview-card-header">
+                    <i class="fa-solid fa-book-open" style="color: #00ff88;"></i>
+                    <h2>Lesson Overview & Key Takeaways</h2>
+                </div>
+                <div class="overview-body">
+                    <p>In this lesson, you will learn how to properly input data and make your spreadsheets visually professional:</p>
+                    <ul>
+                        <li><strong>Data Types:</strong> Understanding text (labels), numbers, and dates in Excel.</li>
+                        <li><strong>Cell Formatting:</strong> Changing fonts, alignments, currency signs, and borders.</li>
+                        <li><strong>Table Styles:</strong> Using quick formatting options to organize data sets efficiently.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" onclick="window.location.href='excel-lesson1.html'">
+                    <i class="fa-solid fa-arrow-left"></i> Previous Lesson
+                </button>
+                <button class="nav-btn next-btn" onclick="window.location.href='excel-quiz.html'" style="background: linear-gradient(135deg, #00ff88, #00b8ff); color: #0d1117;">
+                    Proceed to Quiz 1 <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) document.getElementById("userName").textContent = savedName;
+    </script>
+</body>
+</html>

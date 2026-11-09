@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrindMind - Learn Microsoft Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #151823;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 20px 20px 20px;
+        }
+
+        /* 1. Header Logo sa Taas */
+        .top-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-logo img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .top-logo span {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .top-logo span label {
+            color: #ff4d6d;
+            cursor: pointer;
+        }
+
+        /* 2. Main Content Center Block */
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            margin: auto 0;
+        }
+
+        /* Illustration sa Gitna */
+        .landing-illustration {
+            width: 220px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 10px 20px rgba(255, 77, 109, 0.2));
+        }
+
+        /* Catchy Heading / Subtitle */
+        .landing-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* 3. Action Buttons */
+        .buttons-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Green / Pink Main Call To Action */
+        .btn-primary {
+            background-color: #ff4d6d;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 0px #c7324d;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff3358;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0px #c7324d;
+        }
+
+        .btn-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #c7324d;
+        }
+
+        /* Outline Button (I Already Have an Account) */
+        .btn-secondary {
+            background-color: transparent;
+            color: #ff4d6d;
+            border: 2px solid #2a2e3d;
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: #ff4d6d;
+            background-color: rgba(255, 77, 109, 0.08);
+        }
+
+        /* Footer Links sa Ilalim */
+        footer {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+   
+
+    <!-- Gitnang Content (Mascot / Text / Buttons) -->
+    <div class="landing-container">
+        <!-- Main Graphic / Illustration -->
+        <img src="images/logo-removebg-preview.png" alt="GrindMind Illustration" class="landing-illustration">
+
+        <!-- Catchy Tagline -->
+        <h2 class="landing-title">
+            The most simple way to learn Microsoft Office skills step-by-step!
+        </h2>
+
+        <!-- Action Buttons -->
+        <div class="buttons-group">
+            <a href="index.html" class="btn btn-primary">GET STARTED</a>
+            <a href="index.html" class="btn btn-secondary">I ALREADY HAVE AN ACCOUNT</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 GrindMind. All rights reserved.
+    </footer>
+
+</body>
+</html>
