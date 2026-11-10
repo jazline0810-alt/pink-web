@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    <!-- Clean Script Block -->
+   <!-- Clean Script Block -->
     <script>
         const savedName = localStorage.getItem("user");
         if (savedName) {
@@ -169,10 +169,14 @@
         }
 
         function finishModule() {
-            // Save PowerPoint module progress
-            let pptProgress = JSON.parse(localStorage.getItem("powerpoint_progress")) || {};
-            pptProgress.mod1 = true;
-            localStorage.setItem("powerpoint_progress", JSON.stringify(pptProgress));
+            // 1. I-save ang mod2: true sa general key
+            let powerpointProgress = JSON.parse(localStorage.getItem("powerpoint_progress")) || {};
+            powerpointProgress.mod2 = true; // Itinama natin para sa Module 2
+            localStorage.setItem("powerpoint_progress", JSON.stringify(powerpointProgress));
+
+            // 2. I-save din sa user-specific key
+            const currentUser = (localStorage.getItem("user") || "guest").trim();
+            localStorage.setItem(currentUser + "_powerpoint_progress", JSON.stringify(powerpointProgress));
 
             // Display completion modal
             const modal = document.getElementById("completionModal");
@@ -184,6 +188,7 @@
         function goToCourse() {
             window.location.href = "powerpoint-course.html";
         }
+    </script>
     </script>
 </body>
 </html>

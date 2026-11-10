@@ -118,32 +118,33 @@
     </div>
 
 </div>
+<div class="bottom-nav">
+    <button class="nav-btn prev-btn" onclick="window.location.href='word-lesson2.html'">
+        <i class="fa-solid fa-arrow-left"></i> Previous Lesson
+    </button>
+    <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #0d1117;">
+        Finish Module <i class="fa-solid fa-check"></i>
+    </button>
+</div>
+</section>
+</main>
 
-            <div class="bottom-nav">
-                <button class="nav-btn prev-btn" onclick="window.location.href='word-lesson2.html'">
-                    <i class="fa-solid fa-arrow-left"></i> Previous Lesson
-                </button>
-                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #0d1117;">
-                    Finish Module <i class="fa-solid fa-check"></i>
-                </button>
-            </div>
-        </section>
-    </main>
-<!-- Custom Completion Modal Popup -->
+<!-- Custom Completion Modal Popup (Nananatili ang eksaktong kulay at disenyo mo) -->
 <div id="completionModal" class="custom-modal-overlay">
     <div class="custom-modal-card">
         <div class="modal-icon-badge">
             <i class="fa-solid fa-trophy"></i>
         </div>
-        <h2> Word Module 3 Completed!</h2>
-        <p>Great job! You have successfully finished <strong>Module 3: Advanced Word Features</strong>.</p>
-        <button class="modal-primary-btn" onclick="goToCourse()">
-            Back to Course Overview <i class="fa-solid fa-arrow-right"></i>
+        <h2>Congratulations!</h2>
+        <p>Congrats for finishing Microsoft Word course!</p>
+        <button class="modal-primary-btn" onclick="goToCertificate()">
+            Claim Your Certificate <i class="fa-solid fa-award"></i>
         </button>
     </div>
 </div>
+
 <script>
-         // User profile check
+    // User profile check
     const savedName = localStorage.getItem("user");
     if (savedName) {
         const userElem = document.getElementById("userName");
@@ -152,10 +153,15 @@
 
     // Function kapag pinindot ang Finish Module
     function finishModule() {
-        // 1. Save progress sa localStorage
-        let mswordProgress = JSON.parse(localStorage.getItem("msword_progress")) || {};
-        mswordProgress.mod1 = true;
-        localStorage.setItem("msword_progress", JSON.stringify(mswordProgress));
+        // 1. Save progress sa personal localStorage ng user
+        const currentUser = (localStorage.getItem("user") || "guest").trim();
+        let userProgress = JSON.parse(localStorage.getItem(currentUser + "_word_progress")) || {};
+        
+        // Markahan na tapos na ang buong Word course
+        userProgress.mod1 = true;
+        userProgress.mod2 = true;
+        userProgress.mod3 = true;
+        localStorage.setItem(currentUser + "_word_progress", JSON.stringify(userProgress));
 
         // 2. Ipakita ang custom modal popup sa page
         const modal = document.getElementById("completionModal");
@@ -164,12 +170,18 @@
         }
     }
 
-    // Function kapag pinindot ang "Go to Course Overview" sa loob ng modal
-    function goToCourse() {
-        window.location.href = "word-course.html";
-    }
+    // Function kapag pinindot ang "Claim Your Certificate" sa loob ng modal
+    function goToCertificate() {
+        const currentUser = (localStorage.getItem("user") || "guest").trim();
         
-    </script>
+        // I-save ang pangalan ng user at ang kursong natapos para basahin ng certificate.html
+        localStorage.setItem("certified_user", currentUser);
+        localStorage.setItem("certified_course", "Microsoft Word Masterclass");
+        
+        // Lumipat sa certificate page
+        window.location.href = "certificate.html";
+    }
+</script>
 </body>
 </html>
     <script>

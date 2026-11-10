@@ -158,19 +158,25 @@
         if (userElem) userElem.textContent = savedName;
     }
 
-    // Function kapag pinindot ang Finish Module
-    function finishModule() {
-        // 1. Save progress sa localStorage
-        let wordProgress = JSON.parse(localStorage.getItem("word_progress")) || {};
-        wordProgress.mod2 = true;
-        localStorage.setItem("word_progress", JSON.stringify(wordProgress));
+   function finishModule() {
+    // Kunin ang kasalukuyang naka-log in na user
+    const currentUser = (localStorage.getItem("user") || "guest").trim();
+    
+    // Kunin ang personal progress ng user na ito
+    let userProgress = JSON.parse(localStorage.getItem(currentUser + "_word_progress")) || {};
+    
+    // Markahan na tapos na ang Module 2 (o ang module para sa pahinang ito)
+    userProgress.mod2 = true; 
+    
+    // I-save DIRECTLY sa personal key ng user
+    localStorage.setItem(currentUser + "_word_progress", JSON.stringify(userProgress));
 
-        // 2. Ipakita ang custom modal popup sa page
-        const modal = document.getElementById("completionModal");
-        if (modal) {
-            modal.style.display = "flex";
-        }
+    // Ipakita ang completion modal
+    const modal = document.getElementById("completionModal");
+    if (modal) {
+        modal.style.display = "flex";
     }
+}
 
     // Function kapag pinindot ang "Go to Course Overview" sa loob ng modal
     function goToCourse() {

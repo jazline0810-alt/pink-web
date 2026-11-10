@@ -335,14 +335,15 @@
         }
 
         function finishModule() {
-            // Save Excel module progress
-            const currentUser = localStorage.getItem("user") || "guest";
-    let excelProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
-    excelProgress.mod1 = true;
-    localStorage.setItem(currentUser + "_excel_progress", JSON.stringify(excelProgress));
+            // I-save sa parehong general key at user-specific key para walang sablay
+            let powerpointProgress = JSON.parse(localStorage.getItem("powerpoint_progress")) || {};
+            powerpointProgress.mod1 = true;
+            localStorage.setItem("powerpoint_progress", JSON.stringify(powerpointProgress));
 
+            const currentUser = (localStorage.getItem("user") || "guest").trim();
+            localStorage.setItem(currentUser + "_powerpoint_progress", JSON.stringify(powerpointProgress));
 
-            // Display completion modal
+            // Ipakita ang completion modal
             const modal = document.getElementById("completionModal");
             if (modal) {
                 modal.style.display = "flex";

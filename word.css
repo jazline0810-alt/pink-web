@@ -158,19 +158,3 @@ body {
     flex-shrink: 0;
 }
 
-/* Locked Badge para magmukhang kahon at hindi sumagad sa gilid */
-.status-label, 
-.locked-badge {
-    background-color: #1e1b4b;
-    color: #64748b;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    border: 1px solid #2a265f;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    flex-shrink: 0;
-}

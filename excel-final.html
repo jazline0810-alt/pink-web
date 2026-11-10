@@ -139,44 +139,55 @@
         </section>
     </main>
 
-    <!-- Custom Completion Modal Popup -->
-    <div id="completionModal" class="custom-modal-overlay">
-        <div class="custom-modal-card">
-            <div class="modal-icon-badge">
-                <i class="fa-solid fa-trophy"></i>
-            </div>
-            <h2>Excel Module 3 Completed!</h2>
-            <p>Great job! You have successfully finished <strong>Module 3: Data Analysis & Visual Charts</strong>.</p>
-            <button class="modal-primary-btn" onclick="goToCourse()">
-                Back to Excel Course Overview <i class="fa-solid fa-arrow-right"></i>
-            </button>
+    <!-- Custom Completion Modal Popup (Hindi binago ang kulay at disenyo) -->
+<div id="completionModal" class="custom-modal-overlay">
+    <div class="custom-modal-card">
+        <div class="modal-icon-badge">
+            <i class="fa-solid fa-trophy"></i>
         </div>
+        <h2>Congratulations!</h2>
+        <p>Congrats for finishing Microsoft Excel course!</p>
+        <button class="modal-primary-btn" onclick="goToCertificate()">
+            Claim Your Certificate <i class="fa-solid fa-award"></i>
+        </button>
     </div>
+</div>
 
-    <!-- Clean Script Block -->
-    <script>
-        const savedName = localStorage.getItem("user");
-        if (savedName) {
-            const userElem = document.getElementById("userName");
-            if (userElem) userElem.textContent = savedName;
+<!-- Clean Script Block -->
+<script>
+    const savedName = localStorage.getItem("user");
+    if (savedName) {
+        const userElem = document.getElementById("userName");
+        if (userElem) userElem.textContent = savedName;
+    }
+
+    function finishModule() {
+        // Save Excel module progress gamit ang personal key ng user
+        const currentUser = (localStorage.getItem("user") || "guest").trim();
+        let userProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
+        
+        userProgress.mod1 = true;
+        userProgress.mod2 = true;
+        userProgress.mod3 = true;
+        localStorage.setItem(currentUser + "_excel_progress", JSON.stringify(userProgress));
+
+        // Display completion modal
+        const modal = document.getElementById("completionModal");
+        if (modal) {
+            modal.style.display = "flex";
         }
+    }
 
-        function finishModule() {
-            // Save Excel module progress
-            let excelProgress = JSON.parse(localStorage.getItem("excel_progress")) || {};
-            excelProgress.mod1 = true;
-            localStorage.setItem("excel_progress", JSON.stringify(excelProgress));
-
-            // Display completion modal
-            const modal = document.getElementById("completionModal");
-            if (modal) {
-                modal.style.display = "flex";
-            }
-        }
-
-        function goToCourse() {
-            window.location.href = "excel-course.html";
-        }
+    // Function para dalhin ang user sa certificate page dala ang detalye ng Excel
+    function goToCertificate() {
+        const currentUser = (localStorage.getItem("user") || "guest").trim();
+        
+        // I-save ang certified user at course para basahin ng certificate.html
+        localStorage.setItem("certified_user", currentUser);
+        localStorage.setItem("certified_course", "Course 2: Microsoft Excel");
+        
+        window.location.href = "certificate.html";
+    }
     </script>
 </body>
 </html>

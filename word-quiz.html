@@ -326,28 +326,36 @@
         </button>
     </div>
 </div>
-<script>
-         // User profile check
-    const savedName = localStorage.getItem("user");
-    if (savedName) {
-        const userElem = document.getElementById("userName");
-        if (userElem) userElem.textContent = savedName;
-    }
 
-    // Function kapag pinindot ang Finish Module
-    function finishModule() {
-        // 1. Save progress sa localStorage
-        let wordProgress = JSON.parse(localStorage.getItem("word_progress")) || {};
-        wordProgress.mod1 = true;
-        localStorage.setItem("word_progress", JSON.stringify(wordProgress));
-
-        // 2. Ipakita ang custom modal popup sa page
-        const modal = document.getElementById("completionModal");
-        if (modal) {
-            modal.style.display = "flex";
+           <!-- Clean Script Block -->
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) {
+            const userElem = document.getElementById("userName");
+            if (userElem) userElem.textContent = savedName;
         }
-    }
 
+        function finishModule() {
+    // Kunin ang kasalukuyang naka-log in na user
+    const currentUser = (localStorage.getItem("user") || "guest").trim();
+    
+    // Kunin ang personal progress ng user na ito lang
+    let userProgress = JSON.parse(localStorage.getItem(currentUser + "_word_progress")) || {};
+    
+    // Markahan na tapos na ang Module 1
+    userProgress.mod1 = true; 
+    
+    // I-save LAMANG sa personal key ng user (Huwag na sa general word_progress)
+    localStorage.setItem(currentUser + "_word_progress", JSON.stringify(userProgress));
+
+    // Ipakita ang completion modal
+    const modal = document.getElementById("completionModal");
+    if (modal) {
+        modal.style.display = "flex";
+    }
+}
+
+    
     // Function kapag pinindot ang "Go to Course Overview" sa loob ng modal
     function goToCourse() {
         window.location.href = "word-course.html";

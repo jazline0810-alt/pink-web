@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificate of Completion | GrindMind</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -177,28 +178,6 @@
             font-weight: 600;
         }
 
-        /* Seal / Badge sa gitna ng footer */
-        .badge-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .seal-badge {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
-            border: 3px double #ffffff;
-        }
-
         .actions {
             margin-top: 30px;
             display: flex;
@@ -272,11 +251,11 @@
 
         <div class="presented-text">This certificate is proudly presented to</div>
 
-        <!-- RECIPIENT NAME -->
-        <div class="recipient-name">Angeline Gamil</div>
+        <!-- RECIPIENT NAME (Dinagdagan ng ID para sa JavaScript) -->
+        <div class="recipient-name" id="certificate-name">Student Name</div>
 
         <p class="description">
-            For successfully completing all modules, practical assessments, and mastering core skills for <strong>Course 3: Microsoft PowerPoint</strong> on the GrindMind learning platform.
+            For successfully completing all modules, practical assessments, and mastering core skills for <strong id="certificate-course">Microsoft Word Masterclass</strong> on the GrindMind learning platform.
         </p>
 
         <!-- FOOTER SECTION -->
@@ -287,8 +266,6 @@
                 <div class="signature-label">Date Issued</div>
             </div>
 
-           
-
             <div class="signature-block">
                 <div class="digital-signature">GrindMind Academic</div>
                 <div class="signature-line"></div>
@@ -297,17 +274,49 @@
         </div>
     </div>
 
-    <!-- BUTTONS -->
+   <!-- BUTTONS -->
     <div class="actions">
-        <button class="btn" onclick="window.print()">Print / Save Certificate 🖨️</button>
+       <button class="btn" onclick="downloadCertificateImage()">Download Certificate 📥</button>
         <a href="courses.html" class="btn btn-secondary">Back to Courses 📚</a>
     </div>
 
     <script>
+        // 1. Dynamic Date Generator
         const today = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').textContent = today.toLocaleDateString('en-US', options);
-    </script>
 
+        // 2. Dynamic User & Course Loader from localStorage
+        document.addEventListener("DOMContentLoaded", function () {
+            // Kunin ang pangalan ng user (fallback sa naka-login o "Student Name")
+            const certifiedUser = localStorage.getItem("certified_user") || localStorage.getItem("user") || "Student Name";
+            
+            // Kunin ang pangalan ng kursong natapos
+            const certifiedCourse = localStorage.getItem("certified_course") || "Microsoft Word Masterclass";
+
+            // Ilagay sa certificate elements
+            const nameElement = document.getElementById("certificate-name");
+            if (nameElement) {
+                nameElement.textContent = certifiedUser;
+            }
+
+            const courseElement = document.getElementById("certificate-course");
+            if (courseElement) {
+                courseElement.textContent = certifiedCourse;
+            }
+        });
+    </script>
+<script>
+  function downloadCertificateImage() {
+    const element = document.querySelector('.certificate-container');
+    
+    html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'GrindMind_Certificate.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+</script>
 </body>
 </html>

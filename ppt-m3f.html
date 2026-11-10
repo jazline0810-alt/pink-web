@@ -179,44 +179,56 @@
         </section>
     </main>
 
-    <!-- Custom Completion Modal Popup -->
-    <div id="completionModal" class="custom-modal-overlay">
-        <div class="custom-modal-card">
-            <div class="modal-icon-badge">
-                <i class="fa-solid fa-trophy"></i>
-            </div>
-            <h2>PowerPoint Module 3 Completed!</h2>
-            <p>Great job! You have successfully finished <strong>Module 3: Transitions, Animation & Presenting</strong>.</p>
-            <button class="modal-primary-btn" onclick="goToCourse()">
-                Back to PowerPoint Course Overview <i class="fa-solid fa-arrow-right"></i>
-            </button>
+  <!-- Custom Completion Modal Popup (Hindi binago ang kulay at disenyo) -->
+<div id="completionModal" class="custom-modal-overlay">
+    <div class="custom-modal-card">
+        <div class="modal-icon-badge">
+            <i class="fa-solid fa-trophy"></i>
         </div>
+        <h2>Congratulations!</h2>
+        <p>Congrats for finishing Microsoft PowerPoint course!</p>
+        <button class="modal-primary-btn" onclick="goToCertificate()">
+            Claim Your Certificate <i class="fa-solid fa-award"></i>
+        </button>
     </div>
+</div>
 
-    <!-- Clean Script Block -->
-    <script>
-        const savedName = localStorage.getItem("user");
-        if (savedName) {
-            const userElem = document.getElementById("userName");
-            if (userElem) userElem.textContent = savedName;
+<!-- Clean Script Block -->
+<script>
+    const savedName = localStorage.getItem("user");
+    if (savedName) {
+        const userElem = document.getElementById("userName");
+        if (userElem) userElem.textContent = savedName;
+    }
+
+    function finishModule() {
+        // Save PowerPoint module progress gamit ang personal key ng user
+        const currentUser = (localStorage.getItem("user") || "guest").trim();
+        let userProgress = JSON.parse(localStorage.getItem(currentUser + "_powerpoint_progress")) || {};
+        
+        userProgress.mod1 = true;
+        userProgress.mod2 = true;
+        userProgress.mod3 = true;
+        localStorage.setItem(currentUser + "_powerpoint_progress", JSON.stringify(userProgress));
+
+        // Display completion modal
+        const modal = document.getElementById("completionModal");
+        if (modal) {
+            modal.style.display = "flex";
         }
+    }
 
-        function finishModule() {
-            // Save PowerPoint module progress
-            let pptProgress = JSON.parse(localStorage.getItem("powerpoint_progress")) || {};
-            pptProgress.mod1 = true;
-            localStorage.setItem("powerpoint_progress", JSON.stringify(pptProgress));
-
-            // Display completion modal
-            const modal = document.getElementById("completionModal");
-            if (modal) {
-                modal.style.display = "flex";
-            }
-        }
-
-        function goToCourse() {
-            window.location.href = "powerpoint-course.html";
-        }
+    // Function para dalhin ang user sa certificate page dala ang detalye ng PowerPoint
+    function goToCertificate() {
+        const currentUser = (localStorage.getItem("user") || "guest").trim();
+        
+        // I-save ang certified user at course para basahin ng certificate.html
+        localStorage.setItem("certified_user", currentUser);
+        localStorage.setItem("certified_course", "Course 3: Microsoft PowerPoint");
+        
+        window.location.href = "certificate.html";
+    }
+</script>
     </script>
 </body>
 </html>
