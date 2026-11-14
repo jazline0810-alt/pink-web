@@ -50,7 +50,7 @@
 
         <!-- Active Quiz Area -->
         <section class="active-lesson-area">
-            <div class="active-badge" style="color: #00b8ff; border-color: #00b8ff; background: rgba(0, 184, 255, 0.1);">QUIZ 1</div>
+            <div class="active-badge" style="color: #00ff88; border-color: #00b8ff; background: rgba(0, 184, 255, 0.1);">QUIZ 1</div>
             <h2 class="active-heading">Module 1 Knowledge Check</h2>
 
             <div class="overview-card">
@@ -317,8 +317,9 @@
                 <button class="nav-btn prev-btn" onclick="window.location.href='excel-lesson2.html'">
                     <i class="fa-solid fa-arrow-left"></i> Previous Lesson
                 </button>
-                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #00ff88, #00b8ff); color: #0d1117; font-weight: 700;">
-                    Finish Module <i class="fa-solid fa-check"></i>
+                <!-- Naka-lock sa simula ang Finish Module button -->
+                <button id="finishModuleBtn" class="nav-btn next-btn" onclick="finishModule()" style="background: #3a4260; color: #8f9bb3; font-weight: 700; cursor: not-allowed; opacity: 0.6;" disabled>
+                    Finish Module <i class="fa-solid fa-lock" id="lockIcon"></i>
                 </button>
             </div>
         </section>
@@ -345,14 +346,15 @@
             const userElem = document.getElementById("userName");
             if (userElem) userElem.textContent = savedName;
         }
-
         function finishModule() {
+            const finishBtn = document.getElementById("finishModuleBtn");
+            if (finishBtn.hasAttribute("disabled")) return;
+
             // Save Excel module progress
             const currentUser = localStorage.getItem("user") || "guest";
-    let excelProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
-    excelProgress.mod1 = true;
-    localStorage.setItem(currentUser + "_excel_progress", JSON.stringify(excelProgress));
-
+            let excelProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
+            excelProgress.mod1 = true;
+            localStorage.setItem(currentUser + "_excel_progress", JSON.stringify(excelProgress));
 
             // Display completion modal
             const modal = document.getElementById("completionModal");
@@ -367,32 +369,32 @@
     </script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-    for (let i = 1; i <= 10; i++) {
-        const card = document.querySelector(`[data-question="q${i}"]`);
-        if (card) {
-            const buttons = card.querySelectorAll('.quiz-option-btn');
-            buttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    buttons.forEach(btn => {
-                        btn.classList.remove('selected');
-                        const icon = btn.querySelector('.choice-icon');
-                        if (icon) {
-                            icon.className = 'fa-regular fa-circle choice-icon';
+        for (let i = 1; i <= 10; i++) {
+            const card = document.querySelector('[data-question="q' + i + '"]');
+            if (card) {
+                const buttons = card.querySelectorAll('.quiz-option-btn');
+                buttons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        buttons.forEach(btn => {
+                            btn.classList.remove('selected');
+                            const icon = btn.querySelector('.choice-icon');
+                            if (icon) {
+                                icon.className = 'fa-regular fa-circle choice-icon';
+                            }
+                        });
+
+                        this.classList.add('selected');
+                        const selectedIcon = this.querySelector('.choice-icon');
+                        if (selectedIcon) {
+                            selectedIcon.className = 'fa-solid fa-circle-dot choice-icon';
                         }
                     });
-
-                    this.classList.add('selected');
-                    const selectedIcon = this.querySelector('.choice-icon');
-                    if (selectedIcon) {
-                        selectedIcon.className = 'fa-solid fa-circle-dot choice-icon';
-                    }
                 });
-            });
+            }
         }
-    }
-});
-</script>
-<script>
+    });
+    </script>
+    <script>
    function submitQuiz() {
     const correctAnswers = {
         q1: "B", q2: "A", q3: "C", q4: "B", q5: "D",
@@ -404,8 +406,8 @@
     let breakdownHTML = "";
 
     for (let i = 1; i <= 10; i++) {
-        const qKey = `q${i}`;
-        const card = document.querySelector(`[data-question="${qKey}"]`);
+        const qKey = "q" + i;
+        const card = document.querySelector('[data-question="' + qKey + '"]');
         const selectedBtn = card ? card.querySelector('.quiz-option-btn.selected') : null;
 
         if (!selectedBtn) {
@@ -414,9 +416,9 @@
             const selectedValue = selectedBtn.getAttribute('data-value');
             if (selectedValue === correctAnswers[qKey]) {
                 score++;
-                breakdownHTML += `<div class="item-correct" style="color: #00ff66; font-size: 14px; margin-bottom: 4px;">Question ${i}:Correct</div>`;
+                breakdownHTML += '<div class="item-correct" style="color: #00ff66; font-size: 14px; margin-bottom: 4px;">Question ' + i + ': Correct</div>';
             } else {
-                breakdownHTML += `<div class="item-incorrect" style="color: #ff4d4d; font-size: 14px; margin-bottom: 4px;">Question ${i}: Incorrect — The correct answer is ${correctAnswers[qKey]}</div>`;
+                breakdownHTML += '<div class="item-incorrect" style="color: #ff4d4d; font-size: 14px; margin-bottom: 4px;">Question ' + i + ': Incorrect — The correct answer is ' + correctAnswers[qKey] + '</div>';
             }
         }
     }
@@ -438,15 +440,29 @@
         return;
     }
 
-    
     // I-check kung Passed (7 pataas) o Failed (pababa ng 7)
     const tryAgainContainer = document.getElementById("try-again-container");
+    const finishBtn = document.getElementById("finishModuleBtn");
 
     if (score >= 7) {
         passFailText.style.color = "#00ff88";
         passFailText.style.fontSize = "18px";
-        passFailText.innerHTML = `<i class="fa-solid fa-trophy"></i> Congrats, You Passed! 🎉`;
+        passFailText.innerHTML = '<i class="fa-solid fa-trophy"></i> Congrats, You Passed! 🎉';
         
+        // I-unlock ang Finish Module button kapag pumasa
+        if (finishBtn) {
+            finishBtn.removeAttribute("disabled");
+            finishBtn.style.background = "linear-gradient(135deg, #00ff88, #00b8ff)";
+            finishBtn.style.color = "#0d1117";
+            finishBtn.style.cursor = "pointer";
+            finishBtn.style.opacity = "1";
+            
+            const lockIcon = document.getElementById("lockIcon");
+            if (lockIcon) {
+                lockIcon.className = "fa-solid fa-check";
+            }
+        }
+
         // Alisin ang try again button kapag pumasa
         if (tryAgainContainer) {
             tryAgainContainer.innerHTML = "";
@@ -454,9 +470,23 @@
     } else {
         passFailText.style.color = "#ff4d4d";
         passFailText.style.fontSize = "18px";
-        passFailText.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> You Failed. Try Again! 💪`;
+        passFailText.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> You Failed. Try Again! 💪';
         
-        // ILAGAY ITO: Dito lumilitaw ang Try Again button kapag nag-fail
+        // Naka-lock pa rin ang Finish Module button kapag nag-fail
+        if (finishBtn) {
+            finishBtn.setAttribute("disabled", "true");
+            finishBtn.style.background = "#3a4260";
+            finishBtn.style.color = "#8f9bb3";
+            finishBtn.style.cursor = "not-allowed";
+            finishBtn.style.opacity = "0.6";
+            
+            const lockIcon = document.getElementById("lockIcon");
+            if (lockIcon) {
+                lockIcon.className = "fa-solid fa-lock";
+            }
+        }
+
+        // Dito lumilitaw ang Try Again button kapag nag-fail
         if (tryAgainContainer) {
             tryAgainContainer.innerHTML = `
                 <button type="button" class="submit-btn" onclick="resetQuiz()" style="background: linear-gradient(135deg, #ff4d4d, #cc0000); color: #fff; box-shadow: none; margin-top: 20px;">
@@ -466,7 +496,7 @@
         }
     }
 
-    totalScoreText.textContent = `Your Total Score: ${score} / 10`;
+    totalScoreText.textContent = "Your Total Score: " + score + " / 10";
     breakdownList.innerHTML = breakdownHTML;
 
     // Auto-scroll papunta sa resulta
@@ -491,10 +521,6 @@ function resetQuiz() {
     // I-scroll pabalik sa taas ng quiz
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
-
-
-
-</script>
+    </script>
 </body>
 </html>

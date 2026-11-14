@@ -6,6 +6,8 @@
     <title>Excel Quiz 1 | GrindMind</title>
     <link rel="stylesheet" href="excel-module.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SheetJS Library for reading and validating Excel/CSV files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <header class="top-nav">
@@ -49,7 +51,7 @@
         </section>
 
         
-           <div class="overview-card" style="background: #151823; border: 1px solid #2a2f45; border-radius: 12px; padding: 30px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+        <div class="overview-card" style="background: #151823; border: 1px solid #2a2f45; border-radius: 12px; padding: 30px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
         
     <!-- TITLE AT DESCRIPTION / SUBTITLE -->
     <div style="border-bottom: 1px solid #2a2f45; padding-bottom: 20px; margin-bottom: 25px;">
@@ -106,7 +108,7 @@
     <div style="background: #131622; border: 2px dashed #3a4260; padding: 30px; border-radius: 10px; text-align: center;">
         <div style="font-size: 2rem; margin-bottom: 10px;">📁</div>
         <p style="color: #fff; font-weight: 600; font-size: 0.95rem; margin-bottom: 5px;">Upload Your Completed Final Assessment File</p>
-        <p style="color: #8f9bb3; font-size: 0.8rem; margin-bottom: 20px;">Supported formats: .xlsx, .csv,</p>
+        <p style="color: #8f9bb3; font-size: 0.8rem; margin-bottom: 20px;">Supported formats: .xlsx, .csv</p>
         
         <input type="file" id="excelChallengeInput" style="display: none;" onchange="document.getElementById('excelChallengeLabel').textContent = this.files[0] ? this.files[0].name : 'No file chosen';">
         
@@ -120,7 +122,7 @@
         
         <!-- SUBMIT BUTTON -->
         <div>
-            <button type="button" style="background: #03ac13; color: #11141d; border: none; padding: 12px 32px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">
+            <button type="button" id="submitChallengeBtn" style="background: #0f8; color: #11141d; border: none; padding: 12px 32px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">
                 Submit Challenge
             </button>
         </div>
@@ -132,28 +134,48 @@
                 <button class="nav-btn prev-btn" onclick="window.location.href='excel-m3-L3.2.html'">
                     <i class="fa-solid fa-arrow-left"></i> Previous Lesson
                 </button>
-                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #00ff88, #00ff88); color: #0d1117; font-weight: 700;">
-                    Finish Module <i class="fa-solid fa-check"></i>
+                <button id="finishModuleBtn" class="nav-btn next-btn" onclick="finishModule()" style="background: #3a4260; color: #8f9bb3; font-weight: 700; cursor: not-allowed; opacity: 0.6;" disabled>
+                    Finish Module <i class="fa-solid fa-lock" id="lockIcon"></i>
                 </button>
             </div>
         </section>
     </main>
 
-    <!-- Custom Completion Modal Popup (Hindi binago ang kulay at disenyo) -->
-<div id="completionModal" class="custom-modal-overlay">
-    <div class="custom-modal-card">
-        <div class="modal-icon-badge">
-            <i class="fa-solid fa-trophy"></i>
+    <!-- Custom Validation Modal (For Errors) -->
+    <div id="validationModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #00ff88; padding: 30px; border-radius: 16px; width: 380px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(255, 101, 132, 0.2);">
+            <div style="font-size: 40px; color: #0f8; margin-bottom: 12px;"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <h3 style="color: #0f8; margin-bottom: 8px;">Verification Failed</h3>
+            <p id="validationMessage" style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Please check your file data and requirements.</p>
+            <button onclick="closeValidationModal()" style="background: linear-gradient(135deg, #0f8 0%, #00b8ff 100%); color: white; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Try Again</button>
         </div>
-        <h2>Congratulations!</h2>
-        <p>Congrats for finishing Microsoft Excel course!</p>
-        <button class="modal-primary-btn" onclick="goToCertificate()">
-            Claim Your Certificate <i class="fa-solid fa-award"></i>
-        </button>
     </div>
-</div>
 
-<!-- Clean Script Block -->
+    <!-- Custom Success Modal -->
+    <div id="successModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #0f8; padding: 30px; border-radius: 16px; width: 400px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);">
+            <div style="font-size: 45px; color: #0f8; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i></div>
+            <h3 style="color: #0f8; margin-bottom: 8px;">Assessment Verified!</h3>
+            <p style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Your final assessment file has been successfully verified by the system. The "Finish Module" button is now unlocked!</p>
+            <button onclick="closeSuccessModal()" style="background: #0f8; color: #11141d; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Continue</button>
+        </div>
+    </div>
+
+    <!-- Custom Completion Modal Popup -->
+    <div id="completionModal" class="custom-modal-overlay">
+        <div class="custom-modal-card">
+            <div class="modal-icon-badge">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2>Congratulations!</h2>
+            <p>Congrats for finishing Microsoft Excel course!</p>
+            <button class="modal-primary-btn" onclick="goToCertificate()">
+                Claim Your Certificate <i class="fa-solid fa-award"></i>
+            </button>
+        </div>
+    </div>
+
+<!-- Strict Script Block with SheetJS Dataset Validation -->
 <script>
     const savedName = localStorage.getItem("user");
     if (savedName) {
@@ -161,8 +183,98 @@
         if (userElem) userElem.textContent = savedName;
     }
 
+    function showValidation(msg) {
+        document.getElementById("validationMessage").textContent = msg;
+        document.getElementById("validationModal").style.display = "flex";
+    }
+    function closeValidationModal() {
+        document.getElementById("validationModal").style.display = "none";
+    }
+
+    function closeSuccessModal() {
+        document.getElementById("successModal").style.display = "none";
+        
+        const submitBtn = document.getElementById("submitChallengeBtn");
+        if (submitBtn) {
+            submitBtn.textContent = "Assessment Submitted & Verified ✓";
+            submitBtn.style.background = "#2a2f45";
+            submitBtn.style.color = "#03ac13";
+            submitBtn.style.cursor = "default";
+            submitBtn.style.boxShadow = "none";
+            submitBtn.disabled = true;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const submitBtn = document.getElementById("submitChallengeBtn");
+        const fileInput = document.getElementById("excelChallengeInput");
+        const finishBtn = document.getElementById("finishModuleBtn");
+
+        if (submitBtn) {
+            submitBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                if (submitBtn.disabled) return;
+
+                if (!fileInput || fileInput.files.length === 0) {
+                    showValidation("Please attach your completed Excel file first before submitting!");
+                    return;
+                }
+
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        
+                        const firstSheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[firstSheetName];
+                        const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                        // STRICT VALIDATION: Hanapin kung naglalaman ang file ng mga tamang salita/datos galing sa dataset
+                        let fileTextContent = JSON.stringify(jsonData).toLowerCase();
+                        let hasNorthLuzon = fileTextContent.includes("north luzon");
+                        let hasMetroManila = fileTextContent.includes("metro manila");
+                        let hasElectronics = fileTextContent.includes("electronics");
+
+                        // Kung wala ang mga pangunahing datos na ito, ibig sabihin ay hindi ito ang tamang in-upload na file
+                        if (jsonData.length < 5 || (!hasNorthLuzon && !hasMetroManila && !hasElectronics)) {
+                            showValidation("Invalid dataset! Please make sure you uploaded the correct Excel file containing the sales data analysis report.");
+                            return;
+                        }
+
+                        // UNLOCK FINISH MODULE BUTTON KUNG TAMA
+                        finishBtn.removeAttribute("disabled");
+                        finishBtn.style.background = "linear-gradient(135deg, #00ff88, #00ff88)";
+                        finishBtn.style.color = "#0d1117";
+                        finishBtn.style.cursor = "pointer";
+                        finishBtn.style.opacity = "1";
+                        
+                        const lockIcon = document.getElementById("lockIcon");
+                        if (lockIcon) {
+                            lockIcon.className = "fa-solid fa-check";
+                        }
+
+                        document.getElementById("successModal").style.display = "flex";
+
+                    } catch (error) {
+                        showValidation("Unable to read the Excel file. Please make sure it is a valid .xlsx or .csv file.");
+                    }
+                };
+
+                reader.readAsArrayBuffer(file);
+            });
+        }
+    });
+
     function finishModule() {
-        // Save Excel module progress gamit ang personal key ng user
+        const finishBtn = document.getElementById("finishModuleBtn");
+        if (finishBtn.hasAttribute("disabled")) {
+            return;
+        }
+
         const currentUser = (localStorage.getItem("user") || "guest").trim();
         let userProgress = JSON.parse(localStorage.getItem(currentUser + "_excel_progress")) || {};
         
@@ -171,23 +283,20 @@
         userProgress.mod3 = true;
         localStorage.setItem(currentUser + "_excel_progress", JSON.stringify(userProgress));
 
-        // Display completion modal
         const modal = document.getElementById("completionModal");
         if (modal) {
             modal.style.display = "flex";
         }
     }
 
-    // Function para dalhin ang user sa certificate page dala ang detalye ng Excel
     function goToCertificate() {
         const currentUser = (localStorage.getItem("user") || "guest").trim();
         
-        // I-save ang certified user at course para basahin ng certificate.html
         localStorage.setItem("certified_user", currentUser);
         localStorage.setItem("certified_course", "Course 2: Microsoft Excel");
         
         window.location.href = "certificate.html";
     }
-    </script>
+</script>
 </body>
 </html>

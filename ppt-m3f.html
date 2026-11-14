@@ -160,7 +160,7 @@
         
         <!-- SUBMIT BUTTON -->
         <div>
-            <button type="button" style="background: #ff9900; color: #11141d; border: none; padding: 12px 32px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(255,153,0,0.3);">
+            <button type="button" id="submitAssessmentBtn" style="background: #ff9900; color: #11141d; border: none; padding: 12px 32px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(255,153,0,0.3);">
                 Submit Final Assessment
             </button>
         </div>
@@ -172,14 +172,35 @@
                 <button class="nav-btn prev-btn" onclick="window.location.href='ppt-m3l2.html'">
                     <i class="fa-solid fa-arrow-left"></i> Previous Lessons
                 </button>
-                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #ff8800, #ffbb00); color: #0d1117; font-weight: 700;">
-                    Finish Module <i class="fa-solid fa-check"></i>
+                <!-- FINISH MODULE BUTTON (Locked initially) -->
+                <button id="finishModuleBtn" class="nav-btn next-btn" onclick="finishModule()" style="background: #3a4260; color: #8f9bb3; font-weight: 700; cursor: not-allowed; opacity: 0.6;" disabled>
+                    Finish Module <i class="fa-solid fa-lock" id="lockIcon"></i>
                 </button>
             </div>
         </section>
     </main>
 
-  <!-- Custom Completion Modal Popup (Hindi binago ang kulay at disenyo) -->
+<!-- Custom Validation Modal -->
+<div id="validationModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+    <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #ff8800; padding: 30px; border-radius: 16px; width: 400px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(255,136,0,0.2);">
+        <div style="font-size: 40px; color: #ff8800; margin-bottom: 12px;"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <h3 style="color: #ff8800; margin-bottom: 8px;">Verification Failed</h3>
+        <p id="validationMessage" style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px; line-height: 1.5;">Please make sure you submit correct final presentation file.</p>
+        <button onclick="closeValidationModal()" style="background: linear-gradient(135deg, #ff8800 0%, #ffbb00 100%); color: white; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Try Again</button>
+    </div>
+</div>
+
+<!-- Custom Success Modal -->
+<div id="successModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+    <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #ff8800; padding: 30px; border-radius: 16px; width: 400px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(255,136,0,0.2);">
+        <div style="font-size: 45px; color: #ff8800; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i></div>
+        <h3 style="color: #ff8800; margin-bottom: 8px;">Assessment Criteria Passed!</h3>
+        <p style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Your presentation fully complies with the structural performance rubrics. The "Finish Module" button is now officially unlocked!</p>
+        <button onclick="closeSuccessModal()" style="background: #ff8800; color: #11141d; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Proceed to Completion</button>
+    </div>
+</div>
+
+<!-- Custom Completion Modal Popup -->
 <div id="completionModal" class="custom-modal-overlay">
     <div class="custom-modal-card">
         <div class="modal-icon-badge">
@@ -193,7 +214,7 @@
     </div>
 </div>
 
-<!-- Clean Script Block -->
+<!-- Script Block with Strict Validation Rubric -->
 <script>
     const savedName = localStorage.getItem("user");
     if (savedName) {
@@ -201,8 +222,109 @@
         if (userElem) userElem.textContent = savedName;
     }
 
+    function showValidation(msg) {
+        document.getElementById("validationMessage").textContent = msg;
+        document.getElementById("validationModal").style.display = "flex";
+    }
+    function closeValidationModal() {
+        document.getElementById("validationModal").style.display = "none";
+    }
+
+    function closeSuccessModal() {
+        document.getElementById("successModal").style.display = "none";
+        
+        const submitBtn = document.getElementById("submitAssessmentBtn");
+        if (submitBtn) {
+            submitBtn.textContent = "Assessment Evaluated & Verified ✓";
+            submitBtn.style.background = "#2a2f45";
+            submitBtn.style.color = "#ff8800";
+            submitBtn.style.cursor = "default";
+            submitBtn.style.boxShadow = "none";
+            submitBtn.disabled = true;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const submitBtn = document.getElementById("submitAssessmentBtn");
+        const fileInput = document.getElementById("pptFinalInput");
+        const finishBtn = document.getElementById("finishModuleBtn");
+
+        if (submitBtn) {
+            submitBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                if (submitBtn.disabled) return;
+
+                if (!fileInput || fileInput.files.length === 0) {
+                    showValidation("Please attach your completed presentation file (.pptx or .pdf) before submitting for evaluation.");
+                    return;
+                }
+
+                const file = fileInput.files[0];
+                const fileName = file.name.toLowerCase();
+
+                if (!fileName.endsWith(".pptx") && !fileName.endsWith(".pdf") && !fileName.endsWith(".ppt")) {
+                    showValidation(" Only professional presentation formats (.pptx or .pdf) are accepted by the assessment rubric.");
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const content = e.target.result;
+                    let textString = "";
+                    if (typeof content === "string") {
+                        textString = content.toLowerCase();
+                    } else {
+                        const bytes = new Uint8Array(content);
+                        let binary = "";
+                        const len = Math.min(bytes.byteLength, 150000);
+                        for (let i = 0; i < len; i++) {
+                            binary += String.fromCharCode(bytes[i]);
+                        }
+                        textString = binary.toLowerCase();
+                    }
+
+                    const hasTitleKeyword = textString.includes("streamlining office productivity") || textString.includes("task management");
+                    const hasStrategyKeyword = textString.includes("key operational strategies") || textString.includes("standardized templates");
+                    const hasBenefitKeyword = textString.includes("expected benefits") || textString.includes("turnaround speed");
+                    const hasRoutineKeyword = textString.includes("daily administrative routine") || textString.includes("8:00 am");
+
+                    let matchCount = 0;
+                    if (hasTitleKeyword) matchCount++;
+                    if (hasStrategyKeyword) matchCount++;
+                    if (hasBenefitKeyword) matchCount++;
+                    if (hasRoutineKeyword) matchCount++;
+
+                    if (matchCount < 2) {
+                        showValidation("The uploaded presentation lacks core required elements from the raw data (Operational Strategies, Benefits, or Routine). Please organize your slides thoroughly.");
+                        return;
+                    }
+
+                    finishBtn.removeAttribute("disabled");
+                    finishBtn.style.background = "linear-gradient(135deg, #ff8800, #ffbb00)";
+                    finishBtn.style.color = "#0d1117";
+                    finishBtn.style.cursor = "pointer";
+                    finishBtn.style.opacity = "1";
+                    
+                    const lockIcon = document.getElementById("lockIcon");
+                    if (lockIcon) {
+                        lockIcon.className = "fa-solid fa-check";
+                    }
+
+                    document.getElementById("successModal").style.display = "flex";
+                };
+
+                if (fileName.endsWith(".pdf") || fileName.endsWith(".pptx")) {
+                    reader.readAsArrayBuffer(file);
+                } else {
+                    reader.readAsText(file);
+                }
+            });
+        }
+    });
     function finishModule() {
-        // Save PowerPoint module progress gamit ang personal key ng user
+        const finishBtn = document.getElementById("finishModuleBtn");
+        if (finishBtn.hasAttribute("disabled")) return;
+
         const currentUser = (localStorage.getItem("user") || "guest").trim();
         let userProgress = JSON.parse(localStorage.getItem(currentUser + "_powerpoint_progress")) || {};
         
@@ -211,24 +333,20 @@
         userProgress.mod3 = true;
         localStorage.setItem(currentUser + "_powerpoint_progress", JSON.stringify(userProgress));
 
-        // Display completion modal
         const modal = document.getElementById("completionModal");
         if (modal) {
             modal.style.display = "flex";
         }
     }
 
-    // Function para dalhin ang user sa certificate page dala ang detalye ng PowerPoint
     function goToCertificate() {
         const currentUser = (localStorage.getItem("user") || "guest").trim();
         
-        // I-save ang certified user at course para basahin ng certificate.html
         localStorage.setItem("certified_user", currentUser);
         localStorage.setItem("certified_course", "Course 3: Microsoft PowerPoint");
         
         window.location.href = "certificate.html";
     }
 </script>
-    </script>
 </body>
 </html>

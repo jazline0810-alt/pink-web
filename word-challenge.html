@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz 1 | GrindMind</title>
+    <title>Word Challenge | GrindMind</title>
     <link rel="stylesheet" href="module-1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Mammoth.js library para sa pagbasa ng .docx files sa client-side -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 </head>
 <body>
     <header class="top-nav">
@@ -39,7 +41,7 @@
             </div>
         </section>
 
-            <div class="overview-card" style="background: #151823; border: 1px solid #2a2f45; border-radius: 12px; padding: 30px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+        <div class="overview-card" style="background: #151823; border: 1px solid #2a2f45; border-radius: 12px; padding: 30px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
         
     <!-- TITLE AT DESCRIPTION / SUBTITLE -->
     <div style="border-bottom: 1px solid #2a2f45; padding-bottom: 20px; margin-bottom: 25px;">
@@ -75,9 +77,7 @@
             <span>📄</span> Raw Data to Organize & Format:
         </h4>
         
-        <!-- SCROLLABLE CONTAINER -->
         <div style="background: #181c2e; padding: 15px; border-radius: 6px; color: #ccc; font-size: 0.88rem; line-height: 1.7; max-height: 250px; overflow-y: auto;">
-            
             <p style="margin-bottom: 4px; color: #3b82f6; font-weight: bold;">Memo Header Info</p>
             <p style="margin-bottom: 12px; color: #b8c1ec;">TO: All Administrative Division Personnel<br>FROM: Office of the Director<br>DATE: October 29, 2026<br>SUBJECT: Implementation of Standardized Digital Workflow and Quarterly Review</p>
             
@@ -94,7 +94,6 @@
 
             <p style="margin-bottom: 4px; color: #3b82f6; font-weight: bold;">3. Action Required</p>
             <p style="margin: 0; color: #b8c1ec;">All department heads are required to attend the orientation session and submit their feedback reports on or before November 25, 2026. Your cooperation is highly appreciated.</p>
-
         </div>
 
         <p style="color: #8f9bb3; font-size: 0.8rem; margin-top: 10px; font-style: italic; margin-bottom: 0;">
@@ -110,7 +109,6 @@
         
         <input type="file" id="wordChallengeInput" style="display: none;" onchange="document.getElementById('wordChallengeLabel').textContent = this.files[0] ? this.files[0].name : 'No file chosen';">
         
-        <!-- BROWSE AT FILE NAME NA MAGKATABI -->
         <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
             <label for="wordChallengeInput" style="background: #2a2f45; color: #fff; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s;">
                 Browse File
@@ -118,73 +116,185 @@
             <span id="wordChallengeLabel" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
         </div>
         
-        <!-- SUBMIT BUTTON -->
         <div>
-            <button type="button" style="background: #3b82f6; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.3);">
+            <button type="button" id="submitChallengeBtn" style="background: #3b82f6; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.3);">
                 Submit Challenge
             </button>
         </div>
     </div>
 
 </div>
+
             <div class="bottom-nav">
                 <button class="nav-btn prev-btn" onclick="window.location.href='word-m2-L2.2.html'">
                     <i class="fa-solid fa-arrow-left"></i> Previous Lesson
                 </button>
-                <button class="nav-btn next-btn" onclick="finishModule()" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #0d1117;">
-                    Finish Module <i class="fa-solid fa-check"></i>
+                <!-- FINISH MODULE BUTTON (Naka-lock sa simula) -->
+                <button id="finishModuleBtn" class="nav-btn next-btn" onclick="finishModule()" style="background: #3a4260; color: #8f9bb3; font-weight: 700; cursor: not-allowed; opacity: 0.6;" disabled>
+                    Finish Module <i class="fa-solid fa-lock" id="lockIcon"></i>
                 </button>
             </div>
         </section>
     </main>
-<!-- Custom Completion Modal Popup -->
-<div id="completionModal" class="custom-modal-overlay">
-    <div class="custom-modal-card">
-        <div class="modal-icon-badge">
-            <i class="fa-solid fa-trophy"></i>
+
+    <!-- Custom Validation Modal (For Errors) -->
+    <div id="validationModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #3b82f6; padding: 30px; border-radius: 16px; width: 380px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(59,130,246,0.2);">
+            <div style="font-size: 40px; color: #3b82f6; margin-bottom: 12px;"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <h3 style="color: #3b82f6; margin-bottom: 8px;">Verification Failed</h3>
+            <p id="validationMessage" style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Please check your file data and requirements.</p>
+            <button onclick="closeValidationModal()" style="background: linear-gradient(135deg, #3b82f6 0%, #600584 100%); color: white; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Try Again</button>
         </div>
-        <h2> Word Module 2 Completed!</h2>
-        <p>Great job! You have successfully finished <strong>Module 2 : Tables, Headers & Page Layouts</strong>.</p>
-        <button class="modal-primary-btn" onclick="goToCourse()">
-            Back to Course Overview <i class="fa-solid fa-arrow-right"></i>
-        </button>
     </div>
-</div>
-<script>
-         // User profile check
-    const savedName = localStorage.getItem("user");
-    if (savedName) {
-        const userElem = document.getElementById("userName");
-        if (userElem) userElem.textContent = savedName;
-    }
 
-   function finishModule() {
-    // Kunin ang kasalukuyang naka-log in na user
-    const currentUser = (localStorage.getItem("user") || "guest").trim();
-    
-    // Kunin ang personal progress ng user na ito
-    let userProgress = JSON.parse(localStorage.getItem(currentUser + "_word_progress")) || {};
-    
-    // Markahan na tapos na ang Module 2 (o ang module para sa pahinang ito)
-    userProgress.mod2 = true; 
-    
-    // I-save DIRECTLY sa personal key ng user
-    localStorage.setItem(currentUser + "_word_progress", JSON.stringify(userProgress));
+    <!-- Custom Success Modal -->
+    <div id="successModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+        <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #3b82f6; padding: 30px; border-radius: 16px; width: 400px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(59,130,246,0.2);">
+            <div style="font-size: 45px; color: #3b82f6; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i></div>
+            <h3 style="color: #3b82f6; margin-bottom: 8px;">Challenge Verified!</h3>
+            <p style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Your memorandum file has been successfully verified. The "Finish Module" button is now unlocked!</p>
+            <button onclick="closeSuccessModal()" style="background: #3b82f6; color: #fff; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Continue</button>
+        </div>
+    </div>
 
-    // Ipakita ang completion modal
-    const modal = document.getElementById("completionModal");
-    if (modal) {
-        modal.style.display = "flex";
-    }
-}
+    <!-- Custom Completion Modal Popup -->
+    <div id="completionModal" class="custom-modal-overlay">
+        <div class="custom-modal-card">
+            <div class="modal-icon-badge">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2> Word Module 2 Completed!</h2>
+            <p>Great job! You have successfully finished <strong>Module 2 : Tables, Headers & Page Layouts</strong>.</p>
+            <button class="modal-primary-btn" onclick="goToCourse()">
+                Back to Course Overview <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
 
-    // Function kapag pinindot ang "Go to Course Overview" sa loob ng modal
-    function goToCourse() {
-        window.location.href = "word-course.html";
-    }
-        
+    <!-- Script Block with Validation -->
+    <script>
+        const savedName = localStorage.getItem("user");
+        if (savedName) {
+            const userElem = document.getElementById("userName");
+            if (userElem) userElem.textContent = savedName;
+        }
+
+        function showValidation(msg) {
+            document.getElementById("validationMessage").textContent = msg;
+            document.getElementById("validationModal").style.display = "flex";
+        }
+        function closeValidationModal() {
+            document.getElementById("validationModal").style.display = "none";
+        }
+
+        function closeSuccessModal() {
+            document.getElementById("successModal").style.display = "none";
+            
+            const submitBtn = document.getElementById("submitChallengeBtn");
+            if (submitBtn) {
+                submitBtn.textContent = "Challenge Submitted & Verified ✓";
+                submitBtn.style.background = "#2a2f45";
+                submitBtn.style.color = "#3b82f6";
+                submitBtn.style.cursor = "default";
+                submitBtn.style.boxShadow = "none";
+                submitBtn.disabled = true;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const submitBtn = document.getElementById("submitChallengeBtn");
+            const fileInput = document.getElementById("wordChallengeInput");
+            const finishBtn = document.getElementById("finishModuleBtn");
+
+            if (submitBtn) {
+                submitBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (submitBtn.disabled) return;
+
+                    if (!fileInput || fileInput.files.length === 0) {
+                        showValidation("Please attach your completed memorandum file first before submitting!");
+                        return;
+                    }
+
+                    const file = fileInput.files[0];
+                    const fileName = file.name.toLowerCase();
+
+                    // Kung PDF file ang in-upload, i-check ang filename at size
+                    if (fileName.endsWith(".pdf")) {
+                        if (file.size < 500) {
+                            showValidation("The uploaded PDF file appears to be empty or invalid.");
+                            return;
+                        }
+                        unlockSuccessState(finishBtn);
+                        return;
+                    }
+
+                    // Kung .docx file ang in-upload, gamitin ang Mammoth.js para basahin ang laman
+                    if (fileName.endsWith(".docx")) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const arrayBuffer = e.target.result;
+                            mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+                                .then(function (result) {
+                                    const text = result.value.toLowerCase();
+                                    
+                                    // I-verify kung naglalaman ng mga tamang memo keywords
+                                    const hasTo = text.includes("administrative division");
+                                    const hasSubject = text.includes("standardized digital workflow");
+
+                                    if (!hasTo && !hasSubject) {
+                                        showValidation("Invalid memorandum content! Please ensure you formatted the correct text and included the memo details.");
+                                        return;
+                                    }
+
+                                    unlockSuccessState(finishBtn);
+                                })
+                                .catch(function (err) {
+                                    showValidation("Unable to read the Word document. Please make sure it is a valid .docx file.");
+                                });
+                        };
+                        reader.readAsArrayBuffer(file);
+                    } else {
+                        showValidation("Unsupported file format. Please upload a .docx or .pdf file.");
+                    }
+                });
+            }
+        });
+
+        function unlockSuccessState(finishBtn) {
+            finishBtn.removeAttribute("disabled");
+            finishBtn.style.background = "linear-gradient(135deg, #3b82f6, #8b5cf6)";
+            finishBtn.style.color = "#0d1117";
+            finishBtn.style.cursor = "pointer";
+            finishBtn.style.opacity = "1";
+            
+            const lockIcon = document.getElementById("lockIcon");
+            if (lockIcon) {
+                lockIcon.className = "fa-solid fa-check";
+            }
+
+            document.getElementById("successModal").style.display = "flex";
+        }
+
+        function finishModule() {
+            const finishBtn = document.getElementById("finishModuleBtn");
+            if (finishBtn.hasAttribute("disabled")) return;
+
+            const currentUser = (localStorage.getItem("user") || "guest").trim();
+            let userProgress = JSON.parse(localStorage.getItem(currentUser + "_word_progress")) || {};
+            
+            userProgress.mod2 = true; 
+            localStorage.setItem(currentUser + "_word_progress", JSON.stringify(userProgress));
+
+            const modal = document.getElementById("completionModal");
+            if (modal) {
+                modal.style.display = "flex";
+            }
+        }
+
+        function goToCourse() {
+            window.location.href = "word-course.html";
+        }
     </script>
 </body>
 </html>
-    <script>
-       
