@@ -1,3 +1,5 @@
+
+You sent
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,14 +112,18 @@
         <p style="color: #fff; font-weight: 600; font-size: 0.95rem; margin-bottom: 5px;">Upload Your Completed Final Assessment File</p>
         <p style="color: #8f9bb3; font-size: 0.8rem; margin-bottom: 20px;">Supported formats: .xlsx, .csv</p>
         
-        <input type="file" id="excelChallengeInput" style="display: none;" onchange="document.getElementById('excelChallengeLabel').textContent = this.files[0] ? this.files[0].name : 'No file chosen';">
+        <input type="file" id="excelChallengeInput" style="display: none;" onchange="handleFileSelect(this)">
         
-        <!-- BROWSE AT FILE NAME NA MAGKATABI -->
+        <!-- BROWSE AT FILE NAME NA MAGKATABI MAY KASAMANG X BUTTON -->
         <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
             <label for="excelChallengeInput" style="background: #2a2f45; color: #fff; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s;">
                 Browse File
             </label>
-            <span id="excelChallengeLabel" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="excelChallengeLabel" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
+                <!-- X Remove Button (Naka-hide muna hangga't walang file) -->
+                <button type="button" id="removeFileBtn" onclick="clearSelectedFile()" style="display: none; background: rgba(76, 181, 57, 0.2); color: #00ff88; border: 1px solid #00ff88; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: bold; cursor: pointer; align-items: center; justify-content: center; padding: 0;" title="Remove file">×</button>
+            </div>
         </div>
         
         <!-- SUBMIT BUTTON -->
@@ -155,9 +161,9 @@
     <div id="successModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
         <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #0f8; padding: 30px; border-radius: 16px; width: 400px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);">
             <div style="font-size: 45px; color: #0f8; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i></div>
-            <h3 style="color: #0f8; margin-bottom: 8px;">Assessment Verified!</h3>
+            <h3 style="color: #0f8; margin-bottom: 8px;">Assessment Passed!</h3>
             <p style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Your final assessment file has been successfully verified by the system. The "Finish Module" button is now unlocked!</p>
-            <button onclick="closeSuccessModal()" style="background: #0f8; color: #11141d; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Continue</button>
+            <button onclick="closeSuccessModal()" style="background: #0f8; color: #11141d; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Proceed to Completion</button>
         </div>
     </div>
 
@@ -183,6 +189,31 @@
         if (userElem) userElem.textContent = savedName;
     }
 
+    // Function para sa pag-handle kapag namili ng file
+    function handleFileSelect(input) {
+        const label = document.getElementById('excelChallengeLabel');
+        const removeBtn = document.getElementById('removeFileBtn');
+        
+        if (input.files && input.files[0]) {
+            label.textContent = input.files[0].name;
+            removeBtn.style.display = 'inline-flex'; // Ipakita ang X button
+        } else {
+            label.textContent = 'No file chosen';
+            removeBtn.style.display = 'none'; // Itago kung walang file
+        }
+    }
+
+    // Function para i-clear o i-remove ang napiling file kapag pinindot ang X
+    function clearSelectedFile() {
+        const input = document.getElementById('excelChallengeInput');
+        const label = document.getElementById('excelChallengeLabel');
+        const removeBtn = document.getElementById('removeFileBtn');
+        
+        input.value = ''; // I-reset ang file input
+        label.textContent = 'No file chosen';
+        removeBtn.style.display = 'none'; // Itago ulit ang X button
+    }
+
     function showValidation(msg) {
         document.getElementById("validationMessage").textContent = msg;
         document.getElementById("validationModal").style.display = "flex";
@@ -196,7 +227,7 @@
         
         const submitBtn = document.getElementById("submitChallengeBtn");
         if (submitBtn) {
-            submitBtn.textContent = "Assessment Submitted & Verified ✓";
+            submitBtn.textContent = "Assessment Submitted & Passed ✓";
             submitBtn.style.background = "#2a2f45";
             submitBtn.style.color = "#03ac13";
             submitBtn.style.cursor = "default";
@@ -247,7 +278,7 @@
 
                         // UNLOCK FINISH MODULE BUTTON KUNG TAMA
                         finishBtn.removeAttribute("disabled");
-                        finishBtn.style.background = "linear-gradient(135deg, #00ff88, #00ff88)";
+                        finishBtn.style.background = "linear-gradient(135deg, #00ff88, #00b8ff)";
                         finishBtn.style.color = "#0d1117";
                         finishBtn.style.cursor = "pointer";
                         finishBtn.style.opacity = "1";

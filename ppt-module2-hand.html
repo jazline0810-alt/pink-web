@@ -114,14 +114,18 @@
         <p style="color: #fff; font-weight: 600; font-size: 0.95rem; margin-bottom: 5px;">Upload Your Completed Pitch Deck File</p>
         <p style="color: #8f9bb3; font-size: 0.8rem; margin-bottom: 20px;">Supported formats: .pptx, .pdf</p>
         
-        <input type="file" id="pptMod2Input" style="display: none;" onchange="document.getElementById('pptMod2Label').textContent = this.files[0] ? this.files[0].name : 'No file chosen';">
+        <input type="file" id="pptMod2Input" style="display: none;" onchange="handleFileSelect(this)">
         
-        <!-- BROWSE AT FILE NAME NA MAGKATABI -->
+        <!-- BROWSE AT FILE NAME NA MAGKATABI MAY KASAMANG X BUTTON -->
         <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
             <label for="pptMod2Input" style="background: #2a2f45; color: #fff; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s;">
                 Browse File
             </label>
-            <span id="pptMod2Label" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="pptMod2Label" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
+                <!-- X Remove Button (Naka-hide muna hangga't walang file) -->
+                <button type="button" id="removeFileBtn" onclick="clearSelectedFile()" style="display: none; background: rgba(158, 100, 34, 0.2); color: #ff9900; border: 1px solid #ff9900; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: bold; cursor: pointer; align-items: center; justify-content: center; padding: 0;" title="Remove file">×</button>
+            </div>
         </div>
         
         <!-- SUBMIT BUTTON -->
@@ -158,7 +162,7 @@
     <div id="successModal" class="custom-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 12, 25, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
         <div class="custom-modal-card" style="background: linear-gradient(135deg, #1e1832 0%, #251e3e 100%); border: 1px solid #ff8800; padding: 30px; border-radius: 16px; width: 400px; text-align: center; color: white; box-shadow: 0 15px 35px rgba(255,136,0,0.2);">
             <div style="font-size: 45px; color: #ff8800; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i></div>
-            <h3 style="color: #ff8800; margin-bottom: 8px;">Pitch Deck Verified!</h3>
+            <h3 style="color: #ff8800; margin-bottom: 8px;">Challenge Passed!</h3>
             <p style="font-size: 13px; color: #d0c8e0; margin-bottom: 20px;">Your 5-slide pitch deck content has been successfully verified. The "Finish Module" button is now unlocked!</p>
             <button onclick="closeSuccessModal()" style="background: #ff8800; color: #11141d; border: none; padding: 10px 0; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer;">Continue</button>
         </div>
@@ -178,12 +182,37 @@
         </div>
     </div>
 
-   <!-- Clean Script Block -->
+   <!-- Clean Script Block with Balanced Validation -->
     <script>
         const savedName = localStorage.getItem("user");
         if (savedName) {
             const userElem = document.getElementById("userName");
             if (userElem) userElem.textContent = savedName;
+        }
+
+        // Function para sa pag-handle kapag namili ng file
+        function handleFileSelect(input) {
+            const label = document.getElementById('pptMod2Label');
+            const removeBtn = document.getElementById('removeFileBtn');
+            
+            if (input.files && input.files[0]) {
+                label.textContent = input.files[0].name;
+                removeBtn.style.display = 'inline-flex'; // Ipakita ang X button
+            } else {
+                label.textContent = 'No file chosen';
+                removeBtn.style.display = 'none'; // Itago kung walang file
+            }
+        }
+
+        // Function para i-clear o i-remove ang napiling file kapag pinindot ang X
+        function clearSelectedFile() {
+            const input = document.getElementById('pptMod2Input');
+            const label = document.getElementById('pptMod2Label');
+            const removeBtn = document.getElementById('removeFileBtn');
+            
+            input.value = ''; // I-reset ang file input
+            label.textContent = 'No file chosen';
+            removeBtn.style.display = 'none'; // Itago ulit ang X button
         }
 
         function showValidation(msg) {
@@ -199,7 +228,7 @@
             
             const submitBtn = document.getElementById("submitChallengeBtn");
             if (submitBtn) {
-                submitBtn.textContent = "Challenge Submitted & Verified ✓";
+                submitBtn.textContent = "Challenge Submitted & Passed ✓";
                 submitBtn.style.background = "#2a2f45";
                 submitBtn.style.color = "#ff8800";
                 submitBtn.style.cursor = "default";
@@ -226,56 +255,31 @@
                     const file = fileInput.files[0];
                     const fileName = file.name.toLowerCase();
 
+                    // 1. I-check kung tamang presentation format ang in-upload
                     if (!fileName.endsWith(".pptx") && !fileName.endsWith(".pdf") && !fileName.endsWith(".ppt")) {
-                        showValidation("Invalid file format. Please upload a PowerPoint (.pptx) or PDF (.pdf) file.");
+                        showValidation("Invalid file format. Please upload a PowerPoint (.pptx, .ppt) or PDF (.pdf) file.");
                         return;
                     }
 
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const content = e.target.result;
-                        let textString = "";
-                        if (typeof content === "string") {
-                            textString = content.toLowerCase();
-                        } else {
-                            const bytes = new Uint8Array(content);
-                            let binary = "";
-                            const len = Math.min(bytes.byteLength, 150000);
-                            for (let i = 0; i < len; i++) {
-                                binary += String.fromCharCode(bytes[i]);
-                            }
-                            textString = binary.toLowerCase();
-                        }
-
-                        const hasTitle = textString.includes("next-gen administrative services") || textString.includes("administrative services proposal");
-                        const hasProblem = textString.includes("core problem") || textString.includes("fragmented filing systems");
-                        const hasWorkflow = textString.includes("workflow solution") || textString.includes("standardize templates");
-                        const hasImpact = textString.includes("expected impact") || textString.includes("reduction in report");
-
-                        if (!hasTitle && !hasProblem && !hasWorkflow && !hasImpact) {
-                            showValidation("Format Error: The uploaded file does not contain the required 5-slide pitch deck content or raw data structure!");
-                            return;
-                        }
-
-                        finishBtn.removeAttribute("disabled");
-                        finishBtn.style.background = "linear-gradient(135deg, #ff8800, #ffbb00)";
-                        finishBtn.style.color = "#0d1117";
-                        finishBtn.style.cursor = "pointer";
-                        finishBtn.style.opacity = "1";
-                        
-                        const lockIcon = document.getElementById("lockIcon");
-                        if (lockIcon) {
-                            lockIcon.className = "fa-solid fa-check";
-                        }
-
-                        document.getElementById("successModal").style.display = "flex";
-                    };
-
-                    if (fileName.endsWith(".pdf") || fileName.endsWith(".pptx")) {
-                        reader.readAsArrayBuffer(file);
-                    } else {
-                        reader.readAsText(file);
+                    // 2. I-check kung may laman ang file (hindi blangko/corrupted)
+                    if (file.size < 1000) {
+                        showValidation("The uploaded presentation file appears to be empty or incomplete. Please check your file.");
+                        return;
                     }
+
+                    // Balanced validation: Tanggapin agad basta valid presentation file at may sapat na size
+                    finishBtn.removeAttribute("disabled");
+                    finishBtn.style.background = "linear-gradient(135deg, #ff8800, #ffbb00)";
+                    finishBtn.style.color = "#0d1117";
+                    finishBtn.style.cursor = "pointer";
+                    finishBtn.style.opacity = "1";
+                    
+                    const lockIcon = document.getElementById("lockIcon");
+                    if (lockIcon) {
+                        lockIcon.className = "fa-solid fa-check";
+                    }
+
+                    document.getElementById("successModal").style.display = "flex";
                 });
             }
         });

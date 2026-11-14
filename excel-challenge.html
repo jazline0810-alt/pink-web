@@ -122,14 +122,18 @@
         <p style="color: #fff; font-weight: 600; font-size: 0.95rem; margin-bottom: 5px;">Upload Your Completed Excel Spreadsheet File</p>
         <p style="color: #8f9bb3; font-size: 0.8rem; margin-bottom: 20px;">Supported formats: .xlsx, .csv</p>
         
-        <input type="file" id="excelChallengeInput" style="display: none;" onchange="document.getElementById('excelChallengeLabel').textContent = this.files[0] ? this.files[0].name : 'No file chosen';">
+        <input type="file" id="excelChallengeInput" style="display: none;" onchange="handleFileSelect(this)">
         
-        <!-- BROWSE AND FILE NAME -->
+        <!-- BROWSE AND FILE NAME WITH REMOVE (X) BUTTON -->
         <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
             <label for="excelChallengeInput" style="background: #2a2f45; color: #fff; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s;">
                 Browse File
             </label>
-            <span id="excelChallengeLabel" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="excelChallengeLabel" style="color: #8f9bb3; font-size: 0.85rem;">No file chosen</span>
+                <!-- X Remove Button (Naka-hide muna hangga't walang file) -->
+                <button type="button" id="removeFileBtn" onclick="clearSelectedFile()" style="display: none; background:  rgba(76, 181, 57, 0.2); color: #00ff88; border: 1px solid #00ff88; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: bold; cursor: pointer; align-items: center; justify-content: center; padding: 0;" title="Remove file">×</button>
+            </div>
         </div>
         
         <!-- SUBMIT BUTTON -->
@@ -196,6 +200,31 @@
             if (userElem) userElem.textContent = savedName;
         }
 
+        // Function para sa pag-handle kapag namili ng file
+        function handleFileSelect(input) {
+            const label = document.getElementById('excelChallengeLabel');
+            const removeBtn = document.getElementById('removeFileBtn');
+            
+            if (input.files && input.files[0]) {
+                label.textContent = input.files[0].name;
+                removeBtn.style.display = 'inline-flex'; // Ipakita ang X button
+            } else {
+                label.textContent = 'No file chosen';
+                removeBtn.style.display = 'none'; // Itago kung walang file
+            }
+        }
+
+        // Function para i-clear o i-remove ang napiling file kapag pinindot ang X
+        function clearSelectedFile() {
+            const input = document.getElementById('excelChallengeInput');
+            const label = document.getElementById('excelChallengeLabel');
+            const removeBtn = document.getElementById('removeFileBtn');
+            
+            input.value = ''; // I-reset ang file input
+            label.textContent = 'No file chosen';
+            removeBtn.style.display = 'none'; // Itago ulit ang X button
+        }
+
         function showValidation(msg) {
             document.getElementById("validationMessage").textContent = msg;
             document.getElementById("validationModal").style.display = "flex";
@@ -210,7 +239,7 @@
             // PAG-CLICK NG CONTINUE: Babaguhin ang Submit Button para hindi na ma-click at maging "Submitted" status na
             const submitBtn = document.getElementById("submitChallengeBtn");
             if (submitBtn) {
-                submitBtn.textContent = "Challenge Submitted & Verified ✓";
+                submitBtn.textContent = "Challenge Submitted & Passed ✓";
                 submitBtn.style.background = "#2a2f45";
                 submitBtn.style.color = "#03ac13";
                 submitBtn.style.cursor = "default";
